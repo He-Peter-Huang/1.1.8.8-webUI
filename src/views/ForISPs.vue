@@ -146,6 +146,57 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
+  <!-- Case Studies -->
+  <section class="py-20 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-red-400/60 mb-4">{{ t('isps.cases_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cases_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.cases_desc') }}</p>
+      </div>
+
+      <!-- Incident Timeline -->
+      <div class="space-y-3 mb-12">
+        <div
+          v-for="i in 5"
+          :key="i"
+          class="hud-panel p-5 border-red-500/10 hover:border-red-500/30 transition-colors group"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-start gap-3">
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.5)]"></span>
+              <span class="text-[10px] font-mono text-red-400/70 uppercase tracking-wider w-28">{{ t(`isps.case_${i}_date`) }}</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="text-sm font-mono font-semibold text-white/80 mb-1.5">{{ t(`isps.case_${i}_name`) }}</h4>
+              <p class="text-xs text-white/35 leading-relaxed">{{ t(`isps.case_${i}_detail`) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How Hybrid DNS Prevents This -->
+      <div class="hud-panel p-8 border-green-500/20">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse"></span>
+          <h4 class="text-sm font-mono font-semibold text-green-400/80 uppercase tracking-wider">{{ t('isps.cases_hybrid_title') }}</h4>
+        </div>
+        <ul class="space-y-3">
+          <li
+            v-for="(point, idx) in tm('isps.cases_hybrid_points')"
+            :key="idx"
+            class="flex items-start gap-3"
+          >
+            <span class="text-green-500/60 font-mono shrink-0 mt-px text-xs">[+]</span>
+            <span class="text-sm text-white/45 leading-relaxed">{{ point }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
   <!-- 4 Steps -->
   <section class="py-20 relative">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
