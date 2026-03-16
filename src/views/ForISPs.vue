@@ -3,6 +3,8 @@ import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
 
+const vsMetrics = ['latency', 'control', 'accuracy', 'resilience', 'cost']
+
 const reasons = [
   { key: 'control', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
   { key: 'performance', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
@@ -66,6 +68,77 @@ const tiers = [
               <p class="text-xs text-white/30 leading-relaxed">{{ t(`isps.why_${r.key}_desc`) }}</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
+  <!-- Collaboration Model -->
+  <section class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.collab_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.collab_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.collab_desc') }}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <!-- We bring -->
+        <div class="hud-panel hud-corners p-6">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
+            <span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_4px_rgba(232,97,26,0.5)]"></span>
+            <span class="text-[10px] font-mono text-primary/70 uppercase tracking-wider">{{ t('isps.collab_we_title') }}</span>
+          </div>
+          <ul class="space-y-2.5">
+            <li
+              v-for="(item, i) in tm('isps.collab_we')"
+              :key="i"
+              class="flex gap-3 text-xs"
+            >
+              <span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span>
+              <span class="text-white/40">{{ item }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- You bring -->
+        <div class="hud-panel hud-corners p-6">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
+            <span class="w-2 h-2 rounded-full bg-cyan shadow-[0_0_4px_rgba(0,240,255,0.5)]"></span>
+            <span class="text-[10px] font-mono text-cyan/70 uppercase tracking-wider">{{ t('isps.collab_you_title') }}</span>
+          </div>
+          <ul class="space-y-2.5">
+            <li
+              v-for="(item, i) in tm('isps.collab_you')"
+              :key="i"
+              class="flex gap-3 text-xs"
+            >
+              <span class="text-cyan/60 font-mono shrink-0 mt-px">[+]</span>
+              <span class="text-white/40">{{ item }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Result + Failover -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        <div class="hud-panel p-6 border-green-500/20">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.5)]"></span>
+            <span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('isps.collab_result_title') }}</span>
+          </div>
+          <p class="text-sm text-white/45 leading-relaxed">{{ t('isps.collab_result') }}</p>
+        </div>
+        <div class="hud-panel p-6 border-cyan/20">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-4 h-4 text-cyan/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
+            </svg>
+            <span class="text-[10px] font-mono text-cyan/70 uppercase tracking-wider">{{ t('isps.collab_failover_title') }}</span>
+          </div>
+          <p class="text-sm text-white/45 leading-relaxed">{{ t('isps.collab_failover') }}</p>
         </div>
       </div>
     </div>
@@ -213,6 +286,56 @@ const tiers = [
             <span class="text-white/45">{{ b }}</span>
           </li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
+  <!-- vs Remote DNS -->
+  <section class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.vs_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.vs_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.vs_desc') }}</p>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px">
+          <div></div>
+          <div class="bg-red-500/5 border border-red-500/15 px-4 py-3 text-center">
+            <span class="text-[10px] font-mono text-red-400/60 uppercase tracking-wider">{{ t('isps.vs_them_label') }}</span>
+          </div>
+          <div class="bg-green-500/5 border border-green-500/20 px-4 py-3 text-center">
+            <span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('isps.vs_us_label') }}</span>
+          </div>
+        </div>
+
+        <!-- Rows -->
+        <div
+          v-for="m in vsMetrics"
+          :key="m"
+          class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px"
+        >
+          <div class="hud-panel px-4 py-4 flex items-center">
+            <span class="text-xs font-mono font-semibold text-white/60 uppercase tracking-wide">{{ t(`isps.vs_metric_${m}`) }}</span>
+          </div>
+          <div class="bg-panel/50 border border-border-glow/20 px-4 py-4 flex items-center">
+            <div class="flex gap-2 items-start">
+              <span class="text-red-400/50 text-xs mt-0.5 shrink-0">&#x2717;</span>
+              <span class="text-xs text-white/30 leading-relaxed">{{ t(`isps.vs_metric_${m}_them`) }}</span>
+            </div>
+          </div>
+          <div class="bg-green-500/[0.03] border border-green-500/10 px-4 py-4 flex items-center">
+            <div class="flex gap-2 items-start">
+              <span class="text-green-400/70 text-xs mt-0.5 shrink-0">&#x2713;</span>
+              <span class="text-xs text-white/45 leading-relaxed">{{ t(`isps.vs_metric_${m}_us`) }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
