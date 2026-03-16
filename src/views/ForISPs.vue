@@ -146,6 +146,48 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
+  <!-- 4 Steps -->
+  <section class="py-20 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.steps_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.steps_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.steps_desc') }}</p>
+      </div>
+
+      <div class="relative space-y-4">
+        <!-- Vertical line -->
+        <div class="absolute left-[23px] top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-cyan/30 to-green-500/40 hidden sm:block"></div>
+
+        <div
+          v-for="(step, i) in 4"
+          :key="i"
+          class="relative flex gap-5 group"
+        >
+          <!-- Step number -->
+          <div class="relative z-10 w-[47px] h-[47px] border-2 flex items-center justify-center shrink-0 transition-colors"
+            :class="[
+              i === 0 ? 'border-primary/50 bg-primary/10 text-primary' : '',
+              i === 1 ? 'border-cyan/40 bg-cyan/10 text-cyan' : '',
+              i === 2 ? 'border-primary/50 bg-primary/10 text-primary' : '',
+              i === 3 ? 'border-green-500/40 bg-green-500/10 text-green-400' : '',
+            ]"
+          >
+            <span class="text-lg font-mono font-bold">{{ String(i + 1).padStart(2, '0') }}</span>
+          </div>
+
+          <!-- Content -->
+          <div class="hud-panel p-5 flex-1 group-hover:border-border-glow/60 transition-colors">
+            <h4 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide mb-2">{{ t(`isps.step_${i + 1}_title`) }}</h4>
+            <p class="text-xs text-white/35 leading-relaxed">{{ t(`isps.step_${i + 1}_desc`) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
   <!-- Deployment Tiers -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
