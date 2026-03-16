@@ -1,0 +1,25 @@
+{
+  "name": "yamudnsweb",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "d3-geo": "^3.1.1",
+    "tailwindcss": "^4.2.1",
+    "topojson-client": "^3.1.0",
+    "vue": "^3.5.30",
+    "vue-i18n": "^9.14.5",
+    "vue-router": "^4.6.4",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.5",
+    "vite": "^8.0.0"
+  }
+}
