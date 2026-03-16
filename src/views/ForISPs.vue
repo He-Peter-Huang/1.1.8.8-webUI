@@ -155,21 +155,117 @@ const tiers = [
         <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.cases_desc') }}</p>
       </div>
 
-      <!-- Incident Timeline -->
-      <div class="space-y-3 mb-12">
-        <div
-          v-for="i in 5"
-          :key="i"
-          class="hud-panel p-5 border-red-500/10 hover:border-red-500/30 transition-colors group"
-        >
-          <div class="flex flex-col sm:flex-row sm:items-start gap-3">
-            <div class="flex items-center gap-3 shrink-0">
-              <span class="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.5)]"></span>
-              <span class="text-[10px] font-mono text-red-400/70 uppercase tracking-wider w-28">{{ t(`isps.case_${i}_date`) }}</span>
+      <!-- Incident Timeline — center-aligned alternating -->
+      <div class="relative mb-12">
+        <!-- Center vertical line (hidden on mobile) -->
+        <div class="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
+        <!-- Mobile left line -->
+        <div class="md:hidden absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
+
+        <div class="space-y-6 md:space-y-10">
+          <div
+            v-for="i in 5"
+            :key="i"
+            class="relative group"
+          >
+            <!-- Desktop: alternating layout -->
+            <div class="hidden md:grid md:grid-cols-[1fr_40px_1fr] md:gap-0 items-start">
+              <!-- Left side (content on odd, date on even) -->
+              <div :class="i % 2 === 1 ? 'pr-6' : 'pr-6 flex flex-col items-end'">
+                <!-- Card (odd items) -->
+                <template v-if="i % 2 === 1">
+                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
+                      <span class="h-px flex-1 bg-red-500/10"></span>
+                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
+                    </div>
+                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
+                    <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
+                    <div class="flex gap-3 pt-2 border-t border-white/5">
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <!-- Date badge (even items) -->
+                <template v-else>
+                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`isps.case_${i}_date`) }}</span>
+                </template>
+              </div>
+
+              <!-- Center dot -->
+              <div class="flex justify-center">
+                <div class="relative w-4 h-4 mt-2">
+                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18] group-hover:border-red-400 group-hover:bg-red-500/20 transition-all"></span>
+                  <span class="absolute inset-0 rounded-full bg-red-500/15 group-hover:animate-ping"></span>
+                </div>
+              </div>
+
+              <!-- Right side (date on odd, content on even) -->
+              <div :class="i % 2 === 0 ? 'pl-6' : 'pl-6'">
+                <!-- Date badge (odd items) -->
+                <template v-if="i % 2 === 1">
+                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`isps.case_${i}_date`) }}</span>
+                </template>
+                <!-- Card (even items) -->
+                <template v-else>
+                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
+                      <span class="h-px flex-1 bg-red-500/10"></span>
+                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
+                    </div>
+                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
+                    <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
+                    <div class="flex gap-3 pt-2 border-t border-white/5">
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
             </div>
-            <div class="flex-1">
-              <h4 class="text-sm font-mono font-semibold text-white/80 mb-1.5">{{ t(`isps.case_${i}_name`) }}</h4>
-              <p class="text-xs text-white/35 leading-relaxed">{{ t(`isps.case_${i}_detail`) }}</p>
+
+            <!-- Mobile: left-aligned layout -->
+            <div class="md:hidden relative flex gap-4">
+              <!-- Dot -->
+              <div class="relative shrink-0 w-7 flex justify-center">
+                <div class="relative w-3.5 h-3.5 mt-1.5">
+                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18]"></span>
+                </div>
+              </div>
+              <!-- Card -->
+              <div class="hud-panel p-4 flex-1 border-red-500/10">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
+                  <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
+                </div>
+                <h4 class="text-sm font-mono font-bold text-white/85 mb-1.5">{{ t(`isps.case_${i}_name`) }}</h4>
+                <p class="text-xs text-white/35 leading-relaxed mb-2">{{ t(`isps.case_${i}_detail`) }}</p>
+                <div class="flex gap-3 pt-2 border-t border-white/5">
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -218,10 +314,10 @@ const tiers = [
           <!-- Step number -->
           <div class="relative z-10 w-[47px] h-[47px] border-2 flex items-center justify-center shrink-0 transition-colors"
             :class="[
-              i === 0 ? 'border-primary/50 bg-primary/10 text-primary' : '',
-              i === 1 ? 'border-cyan/40 bg-cyan/10 text-cyan' : '',
-              i === 2 ? 'border-primary/50 bg-primary/10 text-primary' : '',
-              i === 3 ? 'border-green-500/40 bg-green-500/10 text-green-400' : '',
+              i === 0 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
+              i === 1 ? 'border-cyan/40 bg-[#081415] text-cyan' : '',
+              i === 2 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
+              i === 3 ? 'border-green-500/40 bg-[#0a1510] text-green-400' : '',
             ]"
           >
             <span class="text-lg font-mono font-bold">{{ String(i + 1).padStart(2, '0') }}</span>
