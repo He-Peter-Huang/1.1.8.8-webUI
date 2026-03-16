@@ -1,6 +1,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { useReveal } from '../composables/useReveal.js'
+import FailoverSim from '../components/FailoverSim.vue'
 
 const { t, tm } = useI18n()
 useReveal()
@@ -286,12 +287,29 @@ const tiers = [
           <p class="text-sm text-white/45 leading-relaxed">{{ t('isps.collab_failover') }}</p>
         </div>
       </div>
+
     </div>
   </section>
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 5. vs Remote DNS — prove it's better -->
+  <!-- 5. Failover Simulation — live demo -->
+  <section class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.failover_section') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.failover_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.failover_desc') }}</p>
+      </div>
+      <div class="reveal-scale stagger-3">
+        <FailoverSim />
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
+  <!-- 6. vs Remote DNS — prove it's better -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -337,6 +355,7 @@ const tiers = [
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
