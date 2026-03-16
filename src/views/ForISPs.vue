@@ -1,7 +1,9 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { useReveal } from '../composables/useReveal.js'
 
 const { t, tm } = useI18n()
+useReveal()
 
 const vsMetrics = ['latency', 'control', 'accuracy', 'resilience', 'cost']
 
@@ -30,13 +32,13 @@ const tiers = [
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-      <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_program') }}</h2>
-      <h1 class="text-4xl sm:text-5xl font-bold text-white">{{ t('isps.hero_title') }}</h1>
-      <p class="mt-4 text-xl font-semibold text-primary font-mono">{{ t('isps.hero_subtitle') }}</p>
-      <p class="mt-4 text-base text-white/40 max-w-2xl mx-auto">{{ t('isps.hero_desc') }}</p>
+      <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_program') }}</h2>
+      <h1 class="reveal stagger-1 text-4xl sm:text-5xl font-bold text-white">{{ t('isps.hero_title') }}</h1>
+      <p class="reveal stagger-2 mt-4 text-xl font-semibold text-primary font-mono">{{ t('isps.hero_subtitle') }}</p>
+      <p class="reveal stagger-3 mt-4 text-base text-white/40 max-w-2xl mx-auto">{{ t('isps.hero_desc') }}</p>
       <a
         href="mailto:1.1.8.8@yamu.com"
-        class="inline-flex items-center gap-2 mt-8 px-8 py-3 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 font-mono text-sm uppercase tracking-wider transition-all"
+        class="reveal stagger-4 inline-flex items-center gap-2 mt-8 px-8 py-3 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 font-mono text-sm uppercase tracking-wider transition-all shimmer-hover relative overflow-hidden"
       >
         <span class="text-primary/50">&gt;</span>
         {{ t('isps.contact_us') }}
@@ -49,9 +51,9 @@ const tiers = [
   <section class="py-20 relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-red-400/60 mb-4">{{ t('isps.cases_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cases_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.cases_desc') }}</p>
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-red-400/60 mb-4">{{ t('isps.cases_section') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cases_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.cases_desc') }}</p>
       </div>
 
       <!-- Incident Timeline — center-aligned alternating -->
@@ -72,13 +74,13 @@ const tiers = [
               <!-- Left side (content on odd, date on even) -->
               <div :class="i % 2 === 1 ? 'pr-6' : 'pr-6 flex flex-col items-end'">
                 <template v-if="i % 2 === 1">
-                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
+                  <div :class="['reveal-left', `stagger-${i}`]" class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)] shimmer-hover relative overflow-hidden">
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
                       <span class="h-px flex-1 bg-red-500/10"></span>
                       <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
                     </div>
-                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
+                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2 glitch-hover">{{ t(`isps.case_${i}_name`) }}</h4>
                     <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
                     <div class="flex gap-3 pt-2 border-t border-white/5">
                       <div class="flex items-center gap-1.5">
@@ -93,7 +95,7 @@ const tiers = [
                   </div>
                 </template>
                 <template v-else>
-                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`isps.case_${i}_date`) }}</span>
+                  <span :class="['reveal-left', `stagger-${i}`]" class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`isps.case_${i}_date`) }}</span>
                 </template>
               </div>
 
@@ -108,16 +110,16 @@ const tiers = [
               <!-- Right side (date on odd, content on even) -->
               <div class="pl-6">
                 <template v-if="i % 2 === 1">
-                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`isps.case_${i}_date`) }}</span>
+                  <span :class="['reveal-right', `stagger-${i}`]" class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`isps.case_${i}_date`) }}</span>
                 </template>
                 <template v-else>
-                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
+                  <div :class="['reveal-right', `stagger-${i}`]" class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)] shimmer-hover relative overflow-hidden">
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
                       <span class="h-px flex-1 bg-red-500/10"></span>
                       <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
                     </div>
-                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
+                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2 glitch-hover">{{ t(`isps.case_${i}_name`) }}</h4>
                     <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
                     <div class="flex gap-3 pt-2 border-t border-white/5">
                       <div class="flex items-center gap-1.5">
@@ -141,7 +143,7 @@ const tiers = [
                   <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18]"></span>
                 </div>
               </div>
-              <div class="hud-panel p-4 flex-1 border-red-500/10">
+              <div :class="['reveal', `stagger-${i}`]" class="hud-panel p-4 flex-1 border-red-500/10">
                 <div class="flex items-center gap-2 mb-2">
                   <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
                   <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
@@ -165,7 +167,7 @@ const tiers = [
       </div>
 
       <!-- How Hybrid DNS Prevents This -->
-      <div class="hud-panel p-8 border-green-500/20">
+      <div class="reveal-scale hud-panel p-8 border-green-500/20">
         <div class="flex items-center gap-2 mb-5">
           <span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse"></span>
           <h4 class="text-sm font-mono font-semibold text-green-400/80 uppercase tracking-wider">{{ t('isps.cases_hybrid_title') }}</h4>
@@ -174,7 +176,8 @@ const tiers = [
           <li
             v-for="(point, idx) in tm('isps.cases_hybrid_points')"
             :key="idx"
-            class="flex items-start gap-3"
+            class="reveal flex items-start gap-3"
+            :class="`stagger-${idx + 1}`"
           >
             <span class="text-green-500/60 font-mono shrink-0 mt-px text-xs">[+]</span>
             <span class="text-sm text-white/45 leading-relaxed">{{ point }}</span>
@@ -189,18 +192,19 @@ const tiers = [
   <!-- 3. Why Partner — now they feel the pain -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4 text-center">{{ t('isps.section_value') }}</h2>
-      <h3 class="text-3xl sm:text-4xl font-bold text-white text-center mb-14">{{ t('isps.why_title') }}</h3>
+      <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4 text-center">{{ t('isps.section_value') }}</h2>
+      <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white text-center mb-14">{{ t('isps.why_title') }}</h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div
-          v-for="r in reasons"
+          v-for="(r, ri) in reasons"
           :key="r.key"
-          class="hud-panel p-6 group"
+          :class="['reveal-scale', `stagger-${ri + 1}`]"
+          class="hud-panel p-6 group shimmer-hover relative overflow-hidden"
         >
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 border border-primary/30 bg-primary/5 flex items-center justify-center shrink-0 group-hover:border-primary/60 transition-colors">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <div class="w-10 h-10 border border-primary/30 bg-primary/5 flex items-center justify-center shrink-0 group-hover:border-primary/60 group-hover:shadow-[0_0_12px_rgba(232,97,26,0.2)] transition-all">
+              <svg class="w-5 h-5 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" :d="r.icon" />
               </svg>
             </div>
@@ -217,19 +221,19 @@ const tiers = [
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
   <!-- 4. Hybrid DNS Model — the solution -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-20 relative overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.collab_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.collab_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.collab_desc') }}</p>
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.collab_section') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.collab_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.collab_desc') }}</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <!-- We bring -->
-        <div class="hud-panel hud-corners p-6">
+        <div class="reveal-left stagger-1 hud-panel hud-corners p-6">
           <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
-            <span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_4px_rgba(232,97,26,0.5)]"></span>
+            <span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_4px_rgba(232,97,26,0.5)] animate-pulse-glow"></span>
             <span class="text-[10px] font-mono text-primary/70 uppercase tracking-wider">{{ t('isps.collab_we_title') }}</span>
           </div>
           <ul class="space-y-2.5">
@@ -245,9 +249,9 @@ const tiers = [
         </div>
 
         <!-- You bring -->
-        <div class="hud-panel hud-corners p-6">
+        <div class="reveal-right stagger-2 hud-panel hud-corners p-6">
           <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
-            <span class="w-2 h-2 rounded-full bg-cyan shadow-[0_0_4px_rgba(0,240,255,0.5)]"></span>
+            <span class="w-2 h-2 rounded-full bg-cyan shadow-[0_0_4px_rgba(0,240,255,0.5)] animate-pulse-glow"></span>
             <span class="text-[10px] font-mono text-cyan/70 uppercase tracking-wider">{{ t('isps.collab_you_title') }}</span>
           </div>
           <ul class="space-y-2.5">
@@ -265,16 +269,16 @@ const tiers = [
 
       <!-- Result + Failover -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-        <div class="hud-panel p-6 border-green-500/20">
+        <div class="reveal-left stagger-3 hud-panel p-6 border-green-500/20">
           <div class="flex items-center gap-2 mb-3">
             <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.5)]"></span>
             <span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('isps.collab_result_title') }}</span>
           </div>
           <p class="text-sm text-white/45 leading-relaxed">{{ t('isps.collab_result') }}</p>
         </div>
-        <div class="hud-panel p-6 border-cyan/20">
+        <div class="reveal-right stagger-4 hud-panel p-6 border-cyan/20">
           <div class="flex items-center gap-2 mb-3">
-            <svg class="w-4 h-4 text-cyan/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <svg class="w-4 h-4 text-cyan/70 animate-[spin_8s_linear_infinite]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
             </svg>
             <span class="text-[10px] font-mono text-cyan/70 uppercase tracking-wider">{{ t('isps.collab_failover_title') }}</span>
@@ -291,15 +295,15 @@ const tiers = [
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.vs_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.vs_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.vs_desc') }}</p>
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.vs_section') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.vs_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.vs_desc') }}</p>
       </div>
 
       <!-- Comparison table -->
       <div class="max-w-4xl mx-auto">
         <!-- Header -->
-        <div class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px">
+        <div class="reveal grid grid-cols-[1fr_1fr_1fr] gap-px mb-px">
           <div></div>
           <div class="bg-red-500/5 border border-red-500/15 px-4 py-3 text-center">
             <span class="text-[10px] font-mono text-red-400/60 uppercase tracking-wider">{{ t('isps.vs_them_label') }}</span>
@@ -311,8 +315,9 @@ const tiers = [
 
         <!-- Rows -->
         <div
-          v-for="m in vsMetrics"
+          v-for="(m, mi) in vsMetrics"
           :key="m"
+          :class="['reveal', `stagger-${mi + 1}`]"
           class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px"
         >
           <div class="hud-panel px-4 py-4 flex items-center">
@@ -341,15 +346,15 @@ const tiers = [
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_arch') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.arch_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.arch_desc') }}</p>
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_arch') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.arch_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.arch_desc') }}</p>
       </div>
 
       <!-- Comparison -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
         <!-- Old architecture -->
-        <div class="hud-panel p-6 border-red-500/10">
+        <div class="reveal-left stagger-1 hud-panel p-6 border-red-500/10">
           <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/20">
             <span class="w-2 h-2 rounded-full bg-red-500/60"></span>
             <span class="text-[10px] font-mono text-red-400/60 uppercase tracking-wider">{{ t('isps.arch_legacy_label') }}</span>
@@ -359,7 +364,7 @@ const tiers = [
 
           <div class="flex justify-center">
             <div class="grid grid-cols-6 gap-1.5">
-              <div v-for="i in 12" :key="i" class="w-8 h-8 border border-red-500/15 bg-red-500/5 flex items-center justify-center">
+              <div v-for="i in 12" :key="i" class="w-8 h-8 border border-red-500/15 bg-red-500/5 flex items-center justify-center animate-[pulse-glow_3s_ease-in-out_infinite]" :style="`animation-delay: ${i * 0.15}s`">
                 <div class="grid grid-cols-2 gap-px">
                   <span class="w-1 h-1 bg-red-400/30"></span>
                   <span class="w-1 h-1 bg-yellow-400/30"></span>
@@ -373,9 +378,9 @@ const tiers = [
         </div>
 
         <!-- New architecture -->
-        <div class="hud-panel p-6 border-primary/20 glow-orange">
+        <div class="reveal-right stagger-2 hud-panel p-6 border-primary/20 glow-orange">
           <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/20">
-            <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.5)]"></span>
+            <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.5)] animate-pulse"></span>
             <span class="text-[10px] font-mono text-green-400/60 uppercase tracking-wider">{{ t('isps.arch_hyperdns_label') }}</span>
             <span class="text-[10px] font-mono text-white/15 ml-auto">{{ t('isps.arch_new') }}</span>
           </div>
@@ -384,7 +389,7 @@ const tiers = [
           <div class="flex justify-center gap-4">
             <div class="text-center">
               <div class="flex gap-1.5 mb-2">
-                <div v-for="i in 2" :key="'h'+i" class="w-8 h-8 border border-primary/30 bg-primary/10 flex items-center justify-center">
+                <div v-for="i in 2" :key="'h'+i" class="w-8 h-8 border border-primary/30 bg-primary/10 flex items-center justify-center animate-float" :style="`animation-delay: ${i * 0.3}s`">
                   <span class="w-2 h-2 bg-primary/60 rounded-full"></span>
                 </div>
               </div>
@@ -392,7 +397,7 @@ const tiers = [
             </div>
             <div class="text-center">
               <div class="grid grid-cols-2 gap-1.5 mb-2">
-                <div v-for="i in 4" :key="'n'+i" class="w-8 h-8 border border-cyan/20 bg-cyan/5 flex items-center justify-center">
+                <div v-for="i in 4" :key="'n'+i" class="w-8 h-8 border border-cyan/20 bg-cyan/5 flex items-center justify-center animate-float" :style="`animation-delay: ${i * 0.2}s`">
                   <span class="w-2 h-2 bg-cyan/40 rounded-full"></span>
                 </div>
               </div>
@@ -400,7 +405,7 @@ const tiers = [
             </div>
             <div class="text-center">
               <div class="flex gap-1.5 mb-2">
-                <div class="w-8 h-8 border border-green-500/20 bg-green-500/5 flex items-center justify-center">
+                <div class="w-8 h-8 border border-green-500/20 bg-green-500/5 flex items-center justify-center animate-float" style="animation-delay: 0.5s">
                   <span class="w-2 h-2 bg-green-500/40 rounded-full"></span>
                 </div>
               </div>
@@ -412,7 +417,7 @@ const tiers = [
       </div>
 
       <!-- Benefits -->
-      <div class="max-w-3xl mx-auto hud-panel hud-corners p-6">
+      <div class="reveal-scale max-w-3xl mx-auto hud-panel hud-corners p-6">
         <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
           <span class="text-[10px] font-mono text-cyan/40 uppercase tracking-wider">{{ t('isps.arch_advantages') }}</span>
         </div>
@@ -420,7 +425,8 @@ const tiers = [
           <li
             v-for="(b, i) in tm('isps.arch_benefits')"
             :key="i"
-            class="flex gap-3 text-sm"
+            class="reveal flex gap-3 text-sm"
+            :class="`stagger-${i + 1}`"
           >
             <span class="text-primary/60 font-mono shrink-0">[+]</span>
             <span class="text-white/45">{{ b }}</span>
@@ -436,41 +442,43 @@ const tiers = [
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_deploy') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.deploy_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.deploy_desc') }}</p>
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_deploy') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.deploy_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.deploy_desc') }}</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div
           v-for="(tier, ti) in tiers"
           :key="tier.key"
-          class="hud-panel border-2 flex flex-col transition-all"
-          :class="tier.accent"
+          :class="['reveal-scale', `stagger-${ti + 1}`, tier.accent]"
+          class="hud-panel border-2 flex flex-col transition-all shimmer-hover relative overflow-hidden"
         >
-          <div class="p-6 pb-4">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 border" :class="tier.tagColor">
-                {{ t(tier.labelKey) }}
-              </span>
-              <span class="text-[10px] font-mono text-white/15">{{ t(`isps.${tier.key}_subtitle`) }}</span>
+          <div class="flex flex-col h-full">
+            <div class="p-6 pb-4">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 border" :class="tier.tagColor">
+                  {{ t(tier.labelKey) }}
+                </span>
+                <span class="text-[10px] font-mono text-white/15">{{ t(`isps.${tier.key}_subtitle`) }}</span>
+              </div>
+              <h3 class="text-xl font-bold text-white font-mono">{{ t(`isps.${tier.key}_title`) }}</h3>
+              <p class="text-xs font-mono text-white/30 mt-2">{{ t(`isps.${tier.key}_for`) }}</p>
+              <div class="mt-3 h-px bg-gradient-to-r from-border-glow/50 to-transparent animate-data-flow"></div>
             </div>
-            <h3 class="text-xl font-bold text-white font-mono">{{ t(`isps.${tier.key}_title`) }}</h3>
-            <p class="text-xs font-mono text-white/30 mt-2">{{ t(`isps.${tier.key}_for`) }}</p>
-            <div class="mt-3 h-px bg-gradient-to-r from-border-glow/50 to-transparent"></div>
-          </div>
 
-          <div class="px-6 pb-6 flex-1">
-            <ul class="space-y-2.5">
-              <li
-                v-for="(feat, i) in tm(`isps.${tier.key}_features`)"
-                :key="i"
-                class="flex gap-3 text-xs"
-              >
-                <span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span>
-                <span class="text-white/40">{{ feat }}</span>
-              </li>
-            </ul>
+            <div class="px-6 pb-6 flex-1">
+              <ul class="space-y-2.5">
+                <li
+                  v-for="(feat, i) in tm(`isps.${tier.key}_features`)"
+                  :key="i"
+                  class="flex gap-3 text-xs"
+                >
+                  <span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span>
+                  <span class="text-white/40">{{ feat }}</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -483,9 +491,9 @@ const tiers = [
   <section class="py-20 relative">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.steps_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.steps_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.steps_desc') }}</p>
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.steps_section') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('isps.steps_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.steps_desc') }}</p>
       </div>
 
       <div class="relative space-y-4">
@@ -495,20 +503,21 @@ const tiers = [
         <div
           v-for="(step, i) in 4"
           :key="i"
+          :class="['reveal', `stagger-${i + 1}`]"
           class="relative flex gap-5 group"
         >
-          <div class="relative z-10 w-[47px] h-[47px] border-2 flex items-center justify-center shrink-0 transition-colors"
+          <div class="relative z-10 w-[47px] h-[47px] border-2 flex items-center justify-center shrink-0 transition-all group-hover:scale-110"
             :class="[
-              i === 0 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
-              i === 1 ? 'border-cyan/40 bg-[#081415] text-cyan' : '',
-              i === 2 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
-              i === 3 ? 'border-green-500/40 bg-[#0a1510] text-green-400' : '',
+              i === 0 ? 'border-primary/50 bg-[#1a0f08] text-primary group-hover:shadow-[0_0_16px_rgba(232,97,26,0.3)]' : '',
+              i === 1 ? 'border-cyan/40 bg-[#081415] text-cyan group-hover:shadow-[0_0_16px_rgba(0,240,255,0.3)]' : '',
+              i === 2 ? 'border-primary/50 bg-[#1a0f08] text-primary group-hover:shadow-[0_0_16px_rgba(232,97,26,0.3)]' : '',
+              i === 3 ? 'border-green-500/40 bg-[#0a1510] text-green-400 group-hover:shadow-[0_0_16px_rgba(34,197,94,0.3)]' : '',
             ]"
           >
             <span class="text-lg font-mono font-bold">{{ String(i + 1).padStart(2, '0') }}</span>
           </div>
 
-          <div class="hud-panel p-5 flex-1 group-hover:border-border-glow/60 transition-colors">
+          <div class="hud-panel p-5 flex-1 group-hover:border-border-glow/60 transition-colors shimmer-hover relative overflow-hidden">
             <h4 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide mb-2">{{ t(`isps.step_${i + 1}_title`) }}</h4>
             <p class="text-xs text-white/35 leading-relaxed">{{ t(`isps.step_${i + 1}_desc`) }}</p>
           </div>
@@ -520,16 +529,16 @@ const tiers = [
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
   <!-- 9. CTA — close -->
-  <section class="py-20 relative">
+  <section class="py-20 relative overflow-hidden">
     <div class="absolute inset-0">
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px] animate-pulse-glow"></div>
     </div>
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cta_title') }}</h2>
-      <p class="mt-4 text-white/35 text-lg">{{ t('isps.cta_desc') }}</p>
+      <h2 class="reveal text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cta_title') }}</h2>
+      <p class="reveal stagger-1 mt-4 text-white/35 text-lg">{{ t('isps.cta_desc') }}</p>
       <a
         href="mailto:1.1.8.8@yamu.com"
-        class="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 font-mono text-sm uppercase tracking-wider transition-all glow-orange"
+        class="reveal stagger-2 inline-flex items-center gap-3 mt-8 px-8 py-4 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 hover:shadow-[0_0_30px_rgba(232,97,26,0.2)] font-mono text-sm uppercase tracking-wider transition-all glow-orange shimmer-hover relative overflow-hidden"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
