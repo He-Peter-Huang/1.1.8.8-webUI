@@ -22,7 +22,7 @@ const tiers = [
 </script>
 
 <template>
-  <!-- Hero -->
+  <!-- 1. Hero -->
   <section class="pt-16 relative overflow-hidden">
     <div class="absolute inset-0">
       <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-primary/6 rounded-full blur-[120px]"></div>
@@ -45,7 +45,148 @@ const tiers = [
     <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
   </section>
 
-  <!-- Why Partner -->
+  <!-- 2. Case Studies — establish the PROBLEM -->
+  <section class="py-20 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-red-400/60 mb-4">{{ t('isps.cases_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cases_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.cases_desc') }}</p>
+      </div>
+
+      <!-- Incident Timeline — center-aligned alternating -->
+      <div class="relative mb-12">
+        <!-- Center vertical line (hidden on mobile) -->
+        <div class="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
+        <!-- Mobile left line -->
+        <div class="md:hidden absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
+
+        <div class="space-y-6 md:space-y-10">
+          <div
+            v-for="i in 5"
+            :key="i"
+            class="relative group"
+          >
+            <!-- Desktop: alternating layout -->
+            <div class="hidden md:grid md:grid-cols-[1fr_40px_1fr] md:gap-0 items-start">
+              <!-- Left side (content on odd, date on even) -->
+              <div :class="i % 2 === 1 ? 'pr-6' : 'pr-6 flex flex-col items-end'">
+                <template v-if="i % 2 === 1">
+                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
+                      <span class="h-px flex-1 bg-red-500/10"></span>
+                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
+                    </div>
+                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
+                    <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
+                    <div class="flex gap-3 pt-2 border-t border-white/5">
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <template v-else>
+                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`isps.case_${i}_date`) }}</span>
+                </template>
+              </div>
+
+              <!-- Center dot -->
+              <div class="flex justify-center">
+                <div class="relative w-4 h-4 mt-2">
+                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18] group-hover:border-red-400 group-hover:bg-red-500/20 transition-all"></span>
+                  <span class="absolute inset-0 rounded-full bg-red-500/15 group-hover:animate-ping"></span>
+                </div>
+              </div>
+
+              <!-- Right side (date on odd, content on even) -->
+              <div class="pl-6">
+                <template v-if="i % 2 === 1">
+                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`isps.case_${i}_date`) }}</span>
+                </template>
+                <template v-else>
+                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
+                      <span class="h-px flex-1 bg-red-500/10"></span>
+                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
+                    </div>
+                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
+                    <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
+                    <div class="flex gap-3 pt-2 border-t border-white/5">
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+
+            <!-- Mobile: left-aligned layout -->
+            <div class="md:hidden relative flex gap-4">
+              <div class="relative shrink-0 w-7 flex justify-center">
+                <div class="relative w-3.5 h-3.5 mt-1.5">
+                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18]"></span>
+                </div>
+              </div>
+              <div class="hud-panel p-4 flex-1 border-red-500/10">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
+                  <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
+                </div>
+                <h4 class="text-sm font-mono font-bold text-white/85 mb-1.5">{{ t(`isps.case_${i}_name`) }}</h4>
+                <p class="text-xs text-white/35 leading-relaxed mb-2">{{ t(`isps.case_${i}_detail`) }}</p>
+                <div class="flex gap-3 pt-2 border-t border-white/5">
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How Hybrid DNS Prevents This -->
+      <div class="hud-panel p-8 border-green-500/20">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse"></span>
+          <h4 class="text-sm font-mono font-semibold text-green-400/80 uppercase tracking-wider">{{ t('isps.cases_hybrid_title') }}</h4>
+        </div>
+        <ul class="space-y-3">
+          <li
+            v-for="(point, idx) in tm('isps.cases_hybrid_points')"
+            :key="idx"
+            class="flex items-start gap-3"
+          >
+            <span class="text-green-500/60 font-mono shrink-0 mt-px text-xs">[+]</span>
+            <span class="text-sm text-white/45 leading-relaxed">{{ point }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
+  <!-- 3. Why Partner — now they feel the pain -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4 text-center">{{ t('isps.section_value') }}</h2>
@@ -75,7 +216,7 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- Collaboration Model -->
+  <!-- 4. Hybrid DNS Model — the solution -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -146,236 +287,48 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- Case Studies -->
-  <section class="py-20 relative">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-red-400/60 mb-4">{{ t('isps.cases_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.cases_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.cases_desc') }}</p>
-      </div>
-
-      <!-- Incident Timeline — center-aligned alternating -->
-      <div class="relative mb-12">
-        <!-- Center vertical line (hidden on mobile) -->
-        <div class="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
-        <!-- Mobile left line -->
-        <div class="md:hidden absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
-
-        <div class="space-y-6 md:space-y-10">
-          <div
-            v-for="i in 5"
-            :key="i"
-            class="relative group"
-          >
-            <!-- Desktop: alternating layout -->
-            <div class="hidden md:grid md:grid-cols-[1fr_40px_1fr] md:gap-0 items-start">
-              <!-- Left side (content on odd, date on even) -->
-              <div :class="i % 2 === 1 ? 'pr-6' : 'pr-6 flex flex-col items-end'">
-                <!-- Card (odd items) -->
-                <template v-if="i % 2 === 1">
-                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
-                    <div class="flex items-center gap-3 mb-3">
-                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
-                      <span class="h-px flex-1 bg-red-500/10"></span>
-                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
-                    </div>
-                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
-                    <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
-                    <div class="flex gap-3 pt-2 border-t border-white/5">
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
-                      </div>
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </template>
-                <!-- Date badge (even items) -->
-                <template v-else>
-                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`isps.case_${i}_date`) }}</span>
-                </template>
-              </div>
-
-              <!-- Center dot -->
-              <div class="flex justify-center">
-                <div class="relative w-4 h-4 mt-2">
-                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18] group-hover:border-red-400 group-hover:bg-red-500/20 transition-all"></span>
-                  <span class="absolute inset-0 rounded-full bg-red-500/15 group-hover:animate-ping"></span>
-                </div>
-              </div>
-
-              <!-- Right side (date on odd, content on even) -->
-              <div :class="i % 2 === 0 ? 'pl-6' : 'pl-6'">
-                <!-- Date badge (odd items) -->
-                <template v-if="i % 2 === 1">
-                  <span class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`isps.case_${i}_date`) }}</span>
-                </template>
-                <!-- Card (even items) -->
-                <template v-else>
-                  <div class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)]">
-                    <div class="flex items-center gap-3 mb-3">
-                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
-                      <span class="h-px flex-1 bg-red-500/10"></span>
-                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
-                    </div>
-                    <h4 class="text-sm font-mono font-bold text-white/85 mb-2">{{ t(`isps.case_${i}_name`) }}</h4>
-                    <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`isps.case_${i}_detail`) }}</p>
-                    <div class="flex gap-3 pt-2 border-t border-white/5">
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
-                      </div>
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </div>
-
-            <!-- Mobile: left-aligned layout -->
-            <div class="md:hidden relative flex gap-4">
-              <!-- Dot -->
-              <div class="relative shrink-0 w-7 flex justify-center">
-                <div class="relative w-3.5 h-3.5 mt-1.5">
-                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18]"></span>
-                </div>
-              </div>
-              <!-- Card -->
-              <div class="hud-panel p-4 flex-1 border-red-500/10">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`isps.case_${i}_date`) }}</span>
-                  <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`isps.case_${i}_cause`) }}</span>
-                </div>
-                <h4 class="text-sm font-mono font-bold text-white/85 mb-1.5">{{ t(`isps.case_${i}_name`) }}</h4>
-                <p class="text-xs text-white/35 leading-relaxed mb-2">{{ t(`isps.case_${i}_detail`) }}</p>
-                <div class="flex gap-3 pt-2 border-t border-white/5">
-                  <div class="flex items-center gap-1.5">
-                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_duration`) }}</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`isps.case_${i}_impact`) }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- How Hybrid DNS Prevents This -->
-      <div class="hud-panel p-8 border-green-500/20">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse"></span>
-          <h4 class="text-sm font-mono font-semibold text-green-400/80 uppercase tracking-wider">{{ t('isps.cases_hybrid_title') }}</h4>
-        </div>
-        <ul class="space-y-3">
-          <li
-            v-for="(point, idx) in tm('isps.cases_hybrid_points')"
-            :key="idx"
-            class="flex items-start gap-3"
-          >
-            <span class="text-green-500/60 font-mono shrink-0 mt-px text-xs">[+]</span>
-            <span class="text-sm text-white/45 leading-relaxed">{{ point }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
-
-  <!-- 4 Steps -->
-  <section class="py-20 relative">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.steps_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.steps_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.steps_desc') }}</p>
-      </div>
-
-      <div class="relative space-y-4">
-        <!-- Vertical line -->
-        <div class="absolute left-[23px] top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-cyan/30 to-green-500/40 hidden sm:block"></div>
-
-        <div
-          v-for="(step, i) in 4"
-          :key="i"
-          class="relative flex gap-5 group"
-        >
-          <!-- Step number -->
-          <div class="relative z-10 w-[47px] h-[47px] border-2 flex items-center justify-center shrink-0 transition-colors"
-            :class="[
-              i === 0 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
-              i === 1 ? 'border-cyan/40 bg-[#081415] text-cyan' : '',
-              i === 2 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
-              i === 3 ? 'border-green-500/40 bg-[#0a1510] text-green-400' : '',
-            ]"
-          >
-            <span class="text-lg font-mono font-bold">{{ String(i + 1).padStart(2, '0') }}</span>
-          </div>
-
-          <!-- Content -->
-          <div class="hud-panel p-5 flex-1 group-hover:border-border-glow/60 transition-colors">
-            <h4 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide mb-2">{{ t(`isps.step_${i + 1}_title`) }}</h4>
-            <p class="text-xs text-white/35 leading-relaxed">{{ t(`isps.step_${i + 1}_desc`) }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
-
-  <!-- Deployment Tiers -->
+  <!-- 5. vs Remote DNS — prove it's better -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_deploy') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.deploy_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.deploy_desc') }}</p>
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.vs_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.vs_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.vs_desc') }}</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div
-          v-for="(tier, ti) in tiers"
-          :key="tier.key"
-          class="hud-panel border-2 flex flex-col transition-all"
-          :class="tier.accent"
-        >
-          <!-- Header -->
-          <div class="p-6 pb-4">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 border" :class="tier.tagColor">
-                {{ t(tier.labelKey) }}
-              </span>
-              <span class="text-[10px] font-mono text-white/15">{{ t(`isps.${tier.key}_subtitle`) }}</span>
-            </div>
-            <h3 class="text-xl font-bold text-white font-mono">{{ t(`isps.${tier.key}_title`) }}</h3>
-            <p class="text-xs font-mono text-white/30 mt-2">{{ t(`isps.${tier.key}_for`) }}</p>
-            <div class="mt-3 h-px bg-gradient-to-r from-border-glow/50 to-transparent"></div>
+      <!-- Comparison table -->
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px">
+          <div></div>
+          <div class="bg-red-500/5 border border-red-500/15 px-4 py-3 text-center">
+            <span class="text-[10px] font-mono text-red-400/60 uppercase tracking-wider">{{ t('isps.vs_them_label') }}</span>
           </div>
+          <div class="bg-green-500/5 border border-green-500/20 px-4 py-3 text-center">
+            <span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('isps.vs_us_label') }}</span>
+          </div>
+        </div>
 
-          <!-- Features -->
-          <div class="px-6 pb-6 flex-1">
-            <ul class="space-y-2.5">
-              <li
-                v-for="(feat, i) in tm(`isps.${tier.key}_features`)"
-                :key="i"
-                class="flex gap-3 text-xs"
-              >
-                <span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span>
-                <span class="text-white/40">{{ feat }}</span>
-              </li>
-            </ul>
+        <!-- Rows -->
+        <div
+          v-for="m in vsMetrics"
+          :key="m"
+          class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px"
+        >
+          <div class="hud-panel px-4 py-4 flex items-center">
+            <span class="text-xs font-mono font-semibold text-white/60 uppercase tracking-wide">{{ t(`isps.vs_metric_${m}`) }}</span>
+          </div>
+          <div class="bg-panel/50 border border-border-glow/20 px-4 py-4 flex items-center">
+            <div class="flex gap-2 items-start">
+              <span class="text-red-400/50 text-xs mt-0.5 shrink-0">&#x2717;</span>
+              <span class="text-xs text-white/30 leading-relaxed">{{ t(`isps.vs_metric_${m}_them`) }}</span>
+            </div>
+          </div>
+          <div class="bg-green-500/[0.03] border border-green-500/10 px-4 py-4 flex items-center">
+            <div class="flex gap-2 items-start">
+              <span class="text-green-400/70 text-xs mt-0.5 shrink-0">&#x2713;</span>
+              <span class="text-xs text-white/45 leading-relaxed">{{ t(`isps.vs_metric_${m}_us`) }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -384,7 +337,7 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- Architecture -->
+  <!-- 6. Architecture — technical deep-dive -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -404,7 +357,6 @@ const tiers = [
           </div>
           <p class="text-xs text-white/30 mb-5">{{ t('isps.arch_old_desc') }}</p>
 
-          <!-- Visual: uniform grid of identical devices -->
           <div class="flex justify-center">
             <div class="grid grid-cols-6 gap-1.5">
               <div v-for="i in 12" :key="i" class="w-8 h-8 border border-red-500/15 bg-red-500/5 flex items-center justify-center">
@@ -429,7 +381,6 @@ const tiers = [
           </div>
           <p class="text-xs text-white/30 mb-5">{{ t('isps.arch_new_desc') }}</p>
 
-          <!-- Visual: specialized device groups -->
           <div class="flex justify-center gap-4">
             <div class="text-center">
               <div class="flex gap-1.5 mb-2">
@@ -481,48 +432,45 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- vs Remote DNS -->
+  <!-- 7. Deployment Tiers — practical sizing -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
-        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.vs_section') }}</h2>
-        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.vs_title') }}</h3>
-        <p class="mt-4 text-white/35 max-w-3xl mx-auto">{{ t('isps.vs_desc') }}</p>
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.section_deploy') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.deploy_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.deploy_desc') }}</p>
       </div>
 
-      <!-- Comparison table -->
-      <div class="max-w-4xl mx-auto">
-        <!-- Header -->
-        <div class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px">
-          <div></div>
-          <div class="bg-red-500/5 border border-red-500/15 px-4 py-3 text-center">
-            <span class="text-[10px] font-mono text-red-400/60 uppercase tracking-wider">{{ t('isps.vs_them_label') }}</span>
-          </div>
-          <div class="bg-green-500/5 border border-green-500/20 px-4 py-3 text-center">
-            <span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('isps.vs_us_label') }}</span>
-          </div>
-        </div>
-
-        <!-- Rows -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div
-          v-for="m in vsMetrics"
-          :key="m"
-          class="grid grid-cols-[1fr_1fr_1fr] gap-px mb-px"
+          v-for="(tier, ti) in tiers"
+          :key="tier.key"
+          class="hud-panel border-2 flex flex-col transition-all"
+          :class="tier.accent"
         >
-          <div class="hud-panel px-4 py-4 flex items-center">
-            <span class="text-xs font-mono font-semibold text-white/60 uppercase tracking-wide">{{ t(`isps.vs_metric_${m}`) }}</span>
-          </div>
-          <div class="bg-panel/50 border border-border-glow/20 px-4 py-4 flex items-center">
-            <div class="flex gap-2 items-start">
-              <span class="text-red-400/50 text-xs mt-0.5 shrink-0">&#x2717;</span>
-              <span class="text-xs text-white/30 leading-relaxed">{{ t(`isps.vs_metric_${m}_them`) }}</span>
+          <div class="p-6 pb-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 border" :class="tier.tagColor">
+                {{ t(tier.labelKey) }}
+              </span>
+              <span class="text-[10px] font-mono text-white/15">{{ t(`isps.${tier.key}_subtitle`) }}</span>
             </div>
+            <h3 class="text-xl font-bold text-white font-mono">{{ t(`isps.${tier.key}_title`) }}</h3>
+            <p class="text-xs font-mono text-white/30 mt-2">{{ t(`isps.${tier.key}_for`) }}</p>
+            <div class="mt-3 h-px bg-gradient-to-r from-border-glow/50 to-transparent"></div>
           </div>
-          <div class="bg-green-500/[0.03] border border-green-500/10 px-4 py-4 flex items-center">
-            <div class="flex gap-2 items-start">
-              <span class="text-green-400/70 text-xs mt-0.5 shrink-0">&#x2713;</span>
-              <span class="text-xs text-white/45 leading-relaxed">{{ t(`isps.vs_metric_${m}_us`) }}</span>
-            </div>
+
+          <div class="px-6 pb-6 flex-1">
+            <ul class="space-y-2.5">
+              <li
+                v-for="(feat, i) in tm(`isps.${tier.key}_features`)"
+                :key="i"
+                class="flex gap-3 text-xs"
+              >
+                <span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span>
+                <span class="text-white/40">{{ feat }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -531,7 +479,47 @@ const tiers = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- CTA -->
+  <!-- 8. 4 Steps — how to get started -->
+  <section class="py-20 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('isps.steps_section') }}</h2>
+        <h3 class="text-3xl sm:text-4xl font-bold text-white">{{ t('isps.steps_title') }}</h3>
+        <p class="mt-4 text-white/35 max-w-2xl mx-auto">{{ t('isps.steps_desc') }}</p>
+      </div>
+
+      <div class="relative space-y-4">
+        <!-- Vertical line -->
+        <div class="absolute left-[23px] top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-cyan/30 to-green-500/40 hidden sm:block"></div>
+
+        <div
+          v-for="(step, i) in 4"
+          :key="i"
+          class="relative flex gap-5 group"
+        >
+          <div class="relative z-10 w-[47px] h-[47px] border-2 flex items-center justify-center shrink-0 transition-colors"
+            :class="[
+              i === 0 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
+              i === 1 ? 'border-cyan/40 bg-[#081415] text-cyan' : '',
+              i === 2 ? 'border-primary/50 bg-[#1a0f08] text-primary' : '',
+              i === 3 ? 'border-green-500/40 bg-[#0a1510] text-green-400' : '',
+            ]"
+          >
+            <span class="text-lg font-mono font-bold">{{ String(i + 1).padStart(2, '0') }}</span>
+          </div>
+
+          <div class="hud-panel p-5 flex-1 group-hover:border-border-glow/60 transition-colors">
+            <h4 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide mb-2">{{ t(`isps.step_${i + 1}_title`) }}</h4>
+            <p class="text-xs text-white/35 leading-relaxed">{{ t(`isps.step_${i + 1}_desc`) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
+  <!-- 9. CTA — close -->
   <section class="py-20 relative">
     <div class="absolute inset-0">
       <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px]"></div>
