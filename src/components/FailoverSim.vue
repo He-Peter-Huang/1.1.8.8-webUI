@@ -327,79 +327,93 @@ function statusFillRgba(s, a) {
 }
 
 // ── Failover cycle ─────────────────────────────────────────
-let cycleTimer = null
+const timers = []
+let stopped = false
 
-function runFailoverCycle() {
+function delay(ms) {
+  return new Promise(resolve => {
+    const id = setTimeout(resolve, ms)
+    timers.push(id)
+  })
+}
+
+async function runFailoverCycle() {
+  if (stopped) return
+
   const idx = Math.floor(Math.random() * nodes.length)
   failingNodeIdx.value = idx
 
-  // Phase 1: Warning
+  // Phase 1: Warning — node degrading
   phase.value = 'failing'
   nodes[idx].status = 'warning'
+  await delay(1500)
+  if (stopped) return
 
-  cycleTimer = setTimeout(() => {
-    // Phase 2: Offline — reroute in-flight particles
-    nodes[idx].status = 'offline'
-    nodes[idx].qps = 0
-    phase.value = 'rerouting'
+  // Phase 2: Offline — reroute in-flight particles
+  nodes[idx].status = 'offline'
+  nodes[idx].qps = 0
+  phase.value = 'rerouting'
 
-    // Reroute in-flight particles targeting the dead node
-    for (const p of pool) {
-      if (p.targetNode === idx) {
-        const curT = p.progress
-        const curX = bezierX(p.ox, p.cx, p.tx, curT)
-        const curY = bezierY(p.oy, p.cy, p.ty, curT)
-        const newIdx = nearestOnlineNode(curX, curY)
-        if (newIdx >= 0) {
-          p.ox = curX
-          p.oy = curY
-          p.tx = nodes[newIdx].x
-          p.ty = nodes[newIdx].y
-          p.cx = (curX + p.tx) / 2
-          p.cy = (curY + p.ty) / 2 - 15 - Math.random() * 20
-          p.targetNode = newIdx
-          p.progress = 0
-          p.speed = PARTICLE_SPEED_REROUTE
-          p.rerouted = true
-        }
+  for (const p of pool) {
+    if (p.targetNode === idx) {
+      const curX = bezierX(p.ox, p.cx, p.tx, p.progress)
+      const curY = bezierY(p.oy, p.cy, p.ty, p.progress)
+      const newIdx = nearestOnlineNode(curX, curY)
+      if (newIdx >= 0) {
+        p.ox = curX
+        p.oy = curY
+        p.tx = nodes[newIdx].x
+        p.ty = nodes[newIdx].y
+        p.cx = (curX + p.tx) / 2
+        p.cy = (curY + p.ty) / 2 - 15 - Math.random() * 20
+        p.targetNode = newIdx
+        p.progress = 0
+        p.speed = PARTICLE_SPEED_REROUTE
+        p.rerouted = true
       }
     }
+  }
 
-    // Nearest 2-3 neighbors absorb traffic
-    const ranked = []
-    for (let i = 0; i < nodes.length; i++) {
-      if (i !== idx && nodes[i].status !== 'offline') {
-        ranked.push({ i, d: dist2(nodes[i].x, nodes[i].y, nodes[idx].x, nodes[idx].y) })
-      }
+  // Nearest 2-3 neighbors absorb traffic
+  const ranked = []
+  for (let i = 0; i < nodes.length; i++) {
+    if (i !== idx && nodes[i].status !== 'offline') {
+      ranked.push({ i, d: dist2(nodes[i].x, nodes[i].y, nodes[idx].x, nodes[idx].y) })
     }
-    ranked.sort((a, b) => a.d - b.d)
-    absorberIndices = ranked.slice(0, 3).map(r => r.i)
-    absorberIndices.forEach(ni => {
-      nodes[ni].status = 'absorbing'
-      nodes[ni].qps = Math.round(nodes[ni].qps * 1.3)
-    })
+  }
+  ranked.sort((a, b) => a.d - b.d)
+  absorberIndices = ranked.slice(0, 3).map(r => r.i)
+  absorberIndices.forEach(ni => {
+    nodes[ni].status = 'absorbing'
+    nodes[ni].qps = Math.round(nodes[ni].qps * 1.3)
+  })
 
-    cycleTimer = setTimeout(() => {
-      // Phase 3: Stabilized
-      phase.value = 'recovered'
-      absorberIndices.forEach(ni => { nodes[ni].status = 'online' })
+  await delay(3000)
+  if (stopped) return
 
-      cycleTimer = setTimeout(() => {
-        // Phase 4: Node back online
-        nodes[idx].status = 'online'
-        nodes[idx].qps = 6000 + Math.floor(Math.random() * 5000)
-        phase.value = 'normal'
-        failingNodeIdx.value = -1
-        absorberIndices = []
+  // Phase 3: Stabilized — absorbers back to normal
+  phase.value = 'recovered'
+  absorberIndices.forEach(ni => { nodes[ni].status = 'online' })
 
-        nodes.forEach(n => {
-          if (n.status === 'online') {
-            n.qps = 6000 + Math.floor(Math.random() * 7000)
-          }
-        })
-      }, 2500)
-    }, 3000)
-  }, 1500)
+  await delay(2500)
+  if (stopped) return
+
+  // Phase 4: Node back online
+  nodes[idx].status = 'online'
+  nodes[idx].qps = 6000 + Math.floor(Math.random() * 5000)
+  phase.value = 'normal'
+  failingNodeIdx.value = -1
+  absorberIndices = []
+
+  nodes.forEach(n => {
+    if (n.status === 'online') {
+      n.qps = 6000 + Math.floor(Math.random() * 7000)
+    }
+  })
+
+  // Breathe — steady state for a beat, then next cycle
+  await delay(3000)
+  if (!stopped) runFailoverCycle()
 }
 
 // ── Lifecycle ──────────────────────────────────────────────
@@ -409,15 +423,16 @@ onMounted(() => {
 
   rafId = requestAnimationFrame(drawFrame)
 
-  cycleTimer = setTimeout(function loop() {
-    runFailoverCycle()
-    cycleTimer = setTimeout(loop, 10000)
-  }, 3000)
+  // Initial steady state, then start cycling
+  delay(3000).then(() => {
+    if (!stopped) runFailoverCycle()
+  })
 })
 
 onUnmounted(() => {
+  stopped = true
   if (rafId) cancelAnimationFrame(rafId)
-  if (cycleTimer) clearTimeout(cycleTimer)
+  timers.forEach(clearTimeout)
   pool.length = 0
 })
 </script>
