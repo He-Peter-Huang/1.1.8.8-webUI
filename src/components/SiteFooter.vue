@@ -29,6 +29,11 @@ import { RouterLink } from 'vue-router'
               </RouterLink>
             </li>
             <li>
+              <RouterLink to="/enterprise" class="text-xs font-mono text-white/40 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="text-primary/40">&gt;</span> {{ $t('nav.enterprise') }}
+              </RouterLink>
+            </li>
+            <li>
               <RouterLink to="/isps" class="text-xs font-mono text-white/40 hover:text-primary transition-colors flex items-center gap-2">
                 <span class="text-primary/40">&gt;</span> {{ $t('nav.isps') }}
               </RouterLink>
