@@ -135,6 +135,12 @@ watch(locale, () => runTypewriter())
             <span class="mr-2 text-primary/50 group-hover:text-primary">&gt;</span>{{ t('home.get_started') }}
           </RouterLink>
           <RouterLink
+            to="/enterprise"
+            class="group px-8 py-3 border border-border-glow text-white/50 hover:text-cyan hover:border-cyan/30 font-mono text-sm uppercase tracking-wider transition-all"
+          >
+            <span class="mr-2 text-white/20 group-hover:text-cyan/50">&gt;</span>{{ t('home.learn_enterprise') }}
+          </RouterLink>
+          <RouterLink
             to="/isps"
             class="group px-8 py-3 border border-border-glow text-white/50 hover:text-cyan hover:border-cyan/30 font-mono text-sm uppercase tracking-wider transition-all"
           >
