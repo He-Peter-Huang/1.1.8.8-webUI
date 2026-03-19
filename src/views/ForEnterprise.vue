@@ -37,16 +37,12 @@ const costMetrics = [
       <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan/5 rounded-full blur-[120px]"></div>
       <div class="dot-grid absolute inset-0 opacity-30"></div>
     </div>
-
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
       <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('enterprise.section') }}</h2>
       <h1 class="reveal stagger-1 text-4xl sm:text-5xl font-bold text-white">{{ t('enterprise.hero_title') }}</h1>
       <p class="reveal stagger-2 mt-4 text-xl font-semibold text-primary font-mono">{{ t('enterprise.hero_subtitle') }}</p>
       <p class="reveal stagger-3 mt-4 text-base text-white/40 max-w-2xl mx-auto">{{ t('enterprise.hero_desc') }}</p>
-      <a
-        href="mailto:1.1.8.8@yamu.com"
-        class="reveal stagger-4 inline-flex items-center gap-2 mt-8 px-8 py-3 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 font-mono text-sm uppercase tracking-wider transition-all shimmer-hover relative overflow-hidden"
-      >
+      <a href="mailto:1.1.8.8@yamu.com" class="reveal stagger-4 inline-flex items-center gap-2 mt-8 px-8 py-3 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 font-mono text-sm uppercase tracking-wider transition-all shimmer-hover relative overflow-hidden">
         <span class="text-primary/50">&gt;</span>
         {{ t('enterprise.contact_us') }}
       </a>
@@ -54,7 +50,7 @@ const costMetrics = [
     <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
   </section>
 
-  <!-- 2. What is DDI -->
+  <!-- 2. What is DDI — educate -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -62,78 +58,37 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.ddi_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.ddi_desc') }}</p>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <!-- DNS -->
         <div class="reveal-scale stagger-1 hud-panel hud-corners p-6 group hover:border-primary/40 transition-all">
           <div class="flex items-center gap-3 mb-4 pb-3 border-b border-border-glow/30">
-            <div class="w-10 h-10 border border-primary/30 bg-primary/5 flex items-center justify-center shrink-0 group-hover:border-primary/60 transition-all">
-              <span class="text-lg font-mono font-bold text-primary">D</span>
-            </div>
-            <div>
-              <h3 class="text-sm font-mono font-bold text-white/85 uppercase tracking-wide">DNS</h3>
-              <p class="text-[10px] font-mono text-white/30">{{ t('enterprise.ddi_dns_full') }}</p>
-            </div>
+            <div class="w-10 h-10 border border-primary/30 bg-primary/5 flex items-center justify-center shrink-0 group-hover:border-primary/60 transition-all"><span class="text-lg font-mono font-bold text-primary">D</span></div>
+            <div><h3 class="text-sm font-mono font-bold text-white/85 uppercase tracking-wide">DNS</h3><p class="text-[10px] font-mono text-white/30">{{ t('enterprise.ddi_dns_full') }}</p></div>
           </div>
           <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t('enterprise.ddi_dns_desc') }}</p>
-          <ul class="space-y-1.5">
-            <li v-for="(item, i) in tm('enterprise.ddi_dns_points')" :key="i" class="flex gap-2 text-[11px]">
-              <span class="text-primary/50 font-mono shrink-0 mt-px">&gt;</span>
-              <span class="text-white/40">{{ item }}</span>
-            </li>
-          </ul>
+          <ul class="space-y-1.5"><li v-for="(item, i) in tm('enterprise.ddi_dns_points')" :key="i" class="flex gap-2 text-[11px]"><span class="text-primary/50 font-mono shrink-0 mt-px">&gt;</span><span class="text-white/40">{{ item }}</span></li></ul>
         </div>
-
-        <!-- DHCP -->
         <div class="reveal-scale stagger-2 hud-panel hud-corners p-6 group hover:border-cyan/40 transition-all">
           <div class="flex items-center gap-3 mb-4 pb-3 border-b border-border-glow/30">
-            <div class="w-10 h-10 border border-cyan/30 bg-cyan/5 flex items-center justify-center shrink-0 group-hover:border-cyan/60 transition-all">
-              <span class="text-lg font-mono font-bold text-cyan">D</span>
-            </div>
-            <div>
-              <h3 class="text-sm font-mono font-bold text-white/85 uppercase tracking-wide">DHCP</h3>
-              <p class="text-[10px] font-mono text-white/30">{{ t('enterprise.ddi_dhcp_full') }}</p>
-            </div>
+            <div class="w-10 h-10 border border-cyan/30 bg-cyan/5 flex items-center justify-center shrink-0 group-hover:border-cyan/60 transition-all"><span class="text-lg font-mono font-bold text-cyan">D</span></div>
+            <div><h3 class="text-sm font-mono font-bold text-white/85 uppercase tracking-wide">DHCP</h3><p class="text-[10px] font-mono text-white/30">{{ t('enterprise.ddi_dhcp_full') }}</p></div>
           </div>
           <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t('enterprise.ddi_dhcp_desc') }}</p>
-          <ul class="space-y-1.5">
-            <li v-for="(item, i) in tm('enterprise.ddi_dhcp_points')" :key="i" class="flex gap-2 text-[11px]">
-              <span class="text-cyan/50 font-mono shrink-0 mt-px">&gt;</span>
-              <span class="text-white/40">{{ item }}</span>
-            </li>
-          </ul>
+          <ul class="space-y-1.5"><li v-for="(item, i) in tm('enterprise.ddi_dhcp_points')" :key="i" class="flex gap-2 text-[11px]"><span class="text-cyan/50 font-mono shrink-0 mt-px">&gt;</span><span class="text-white/40">{{ item }}</span></li></ul>
         </div>
-
-        <!-- IPAM -->
         <div class="reveal-scale stagger-3 hud-panel hud-corners p-6 group hover:border-green-500/40 transition-all">
           <div class="flex items-center gap-3 mb-4 pb-3 border-b border-border-glow/30">
-            <div class="w-10 h-10 border border-green-500/30 bg-green-500/5 flex items-center justify-center shrink-0 group-hover:border-green-500/60 transition-all">
-              <span class="text-lg font-mono font-bold text-green-400">I</span>
-            </div>
-            <div>
-              <h3 class="text-sm font-mono font-bold text-white/85 uppercase tracking-wide">IPAM</h3>
-              <p class="text-[10px] font-mono text-white/30">{{ t('enterprise.ddi_ipam_full') }}</p>
-            </div>
+            <div class="w-10 h-10 border border-green-500/30 bg-green-500/5 flex items-center justify-center shrink-0 group-hover:border-green-500/60 transition-all"><span class="text-lg font-mono font-bold text-green-400">I</span></div>
+            <div><h3 class="text-sm font-mono font-bold text-white/85 uppercase tracking-wide">IPAM</h3><p class="text-[10px] font-mono text-white/30">{{ t('enterprise.ddi_ipam_full') }}</p></div>
           </div>
           <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t('enterprise.ddi_ipam_desc') }}</p>
-          <ul class="space-y-1.5">
-            <li v-for="(item, i) in tm('enterprise.ddi_ipam_points')" :key="i" class="flex gap-2 text-[11px]">
-              <span class="text-green-500/50 font-mono shrink-0 mt-px">&gt;</span>
-              <span class="text-white/40">{{ item }}</span>
-            </li>
-          </ul>
+          <ul class="space-y-1.5"><li v-for="(item, i) in tm('enterprise.ddi_ipam_points')" :key="i" class="flex gap-2 text-[11px]"><span class="text-green-500/50 font-mono shrink-0 mt-px">&gt;</span><span class="text-white/40">{{ item }}</span></li></ul>
         </div>
       </div>
-
-      <!-- Why they must work together -->
       <div class="reveal-scale stagger-4 max-w-3xl mx-auto hud-panel p-6 border-border-glow/30">
         <div class="flex items-center gap-3 mb-4">
-          <span class="text-sm font-mono font-bold text-primary">D</span>
-          <span class="text-white/20">+</span>
-          <span class="text-sm font-mono font-bold text-cyan">D</span>
-          <span class="text-white/20">+</span>
-          <span class="text-sm font-mono font-bold text-green-400">I</span>
-          <span class="text-white/20">=</span>
+          <span class="text-sm font-mono font-bold text-primary">D</span><span class="text-white/20">+</span>
+          <span class="text-sm font-mono font-bold text-cyan">D</span><span class="text-white/20">+</span>
+          <span class="text-sm font-mono font-bold text-green-400">I</span><span class="text-white/20">=</span>
           <span class="text-xs font-mono font-semibold text-white/60 uppercase tracking-wider">{{ t('enterprise.ddi_together_label') }}</span>
         </div>
         <p class="text-sm text-white/40 leading-relaxed">{{ t('enterprise.ddi_together_desc') }}</p>
@@ -143,7 +98,7 @@ const costMetrics = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 3. Incidents — why this matters -->
+  <!-- 3. Incidents — establish the problem -->
   <section class="py-20 relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -151,141 +106,70 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.inc_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.inc_desc') }}</p>
       </div>
-
       <!-- Incident Timeline — center-aligned alternating -->
       <div class="relative mb-12">
-        <!-- Center vertical line (hidden on mobile) -->
         <div class="hidden md:block absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
-        <!-- Mobile left line -->
         <div class="md:hidden absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/50 via-red-500/20 to-transparent"></div>
-
         <div class="space-y-6 md:space-y-10">
-          <div
-            v-for="i in 5"
-            :key="i"
-            class="relative group"
-          >
-            <!-- Desktop: alternating layout -->
+          <div v-for="i in 5" :key="i" class="relative group">
             <div class="hidden md:grid md:grid-cols-[1fr_40px_1fr] md:gap-0 items-start">
-              <!-- Left side (content on odd, date on even) -->
               <div :class="i % 2 === 1 ? 'pr-6' : 'pr-6 flex flex-col items-end'">
                 <template v-if="i % 2 === 1">
                   <div :class="['reveal-left', `stagger-${i}`]" class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)] shimmer-hover relative overflow-hidden">
-                    <div class="flex items-center gap-3 mb-3">
-                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`enterprise.inc_${i}_date`) }}</span>
-                      <span class="h-px flex-1 bg-red-500/10"></span>
-                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`enterprise.inc_${i}_cause`) }}</span>
-                    </div>
+                    <div class="flex items-center gap-3 mb-3"><span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`enterprise.inc_${i}_date`) }}</span><span class="h-px flex-1 bg-red-500/10"></span><span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`enterprise.inc_${i}_cause`) }}</span></div>
                     <h4 class="text-sm font-mono font-bold text-white/85 mb-2 glitch-hover">{{ t(`enterprise.inc_${i}_name`) }}</h4>
                     <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`enterprise.inc_${i}_detail`) }}</p>
                     <div class="flex gap-3 pt-2 border-t border-white/5">
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_duration`) }}</span>
-                      </div>
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_impact`) }}</span>
-                      </div>
+                      <div class="flex items-center gap-1.5"><svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_duration`) }}</span></div>
+                      <div class="flex items-center gap-1.5"><svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_impact`) }}</span></div>
                     </div>
                   </div>
                 </template>
-                <template v-else>
-                  <span :class="['reveal-left', `stagger-${i}`]" class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`enterprise.inc_${i}_date`) }}</span>
-                </template>
+                <template v-else><span :class="['reveal-left', `stagger-${i}`]" class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2">{{ t(`enterprise.inc_${i}_date`) }}</span></template>
               </div>
-
-              <!-- Center dot -->
-              <div class="flex justify-center">
-                <div class="relative w-4 h-4 mt-2">
-                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18] group-hover:border-red-400 group-hover:bg-red-500/20 transition-all"></span>
-                  <span class="absolute inset-0 rounded-full bg-red-500/15 group-hover:animate-ping"></span>
-                </div>
-              </div>
-
-              <!-- Right side (date on odd, content on even) -->
+              <div class="flex justify-center"><div class="relative w-4 h-4 mt-2"><span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18] group-hover:border-red-400 group-hover:bg-red-500/20 transition-all"></span><span class="absolute inset-0 rounded-full bg-red-500/15 group-hover:animate-ping"></span></div></div>
               <div class="pl-6">
-                <template v-if="i % 2 === 1">
-                  <span :class="['reveal-right', `stagger-${i}`]" class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`enterprise.inc_${i}_date`) }}</span>
-                </template>
+                <template v-if="i % 2 === 1"><span :class="['reveal-right', `stagger-${i}`]" class="text-[10px] font-mono text-red-400/50 tracking-widest mt-2 block">{{ t(`enterprise.inc_${i}_date`) }}</span></template>
                 <template v-else>
                   <div :class="['reveal-right', `stagger-${i}`]" class="hud-panel p-5 border-red-500/10 group-hover:border-red-500/40 transition-all group-hover:shadow-[0_0_20px_rgba(239,68,68,0.06)] shimmer-hover relative overflow-hidden">
-                    <div class="flex items-center gap-3 mb-3">
-                      <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`enterprise.inc_${i}_date`) }}</span>
-                      <span class="h-px flex-1 bg-red-500/10"></span>
-                      <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`enterprise.inc_${i}_cause`) }}</span>
-                    </div>
+                    <div class="flex items-center gap-3 mb-3"><span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`enterprise.inc_${i}_date`) }}</span><span class="h-px flex-1 bg-red-500/10"></span><span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`enterprise.inc_${i}_cause`) }}</span></div>
                     <h4 class="text-sm font-mono font-bold text-white/85 mb-2 glitch-hover">{{ t(`enterprise.inc_${i}_name`) }}</h4>
                     <p class="text-xs text-white/35 leading-relaxed mb-3">{{ t(`enterprise.inc_${i}_detail`) }}</p>
                     <div class="flex gap-3 pt-2 border-t border-white/5">
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_duration`) }}</span>
-                      </div>
-                      <div class="flex items-center gap-1.5">
-                        <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_impact`) }}</span>
-                      </div>
+                      <div class="flex items-center gap-1.5"><svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_duration`) }}</span></div>
+                      <div class="flex items-center gap-1.5"><svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_impact`) }}</span></div>
                     </div>
                   </div>
                 </template>
               </div>
             </div>
-
-            <!-- Mobile: left-aligned layout -->
+            <!-- Mobile -->
             <div class="md:hidden relative flex gap-4">
-              <div class="relative shrink-0 w-7 flex justify-center">
-                <div class="relative w-3.5 h-3.5 mt-1.5">
-                  <span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18]"></span>
-                </div>
-              </div>
+              <div class="relative shrink-0 w-7 flex justify-center"><div class="relative w-3.5 h-3.5 mt-1.5"><span class="absolute inset-0 rounded-full border-2 border-red-500/50 bg-[#050A18]"></span></div></div>
               <div :class="['reveal', `stagger-${i}`]" class="hud-panel p-4 flex-1 border-red-500/10">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`enterprise.inc_${i}_date`) }}</span>
-                  <span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`enterprise.inc_${i}_cause`) }}</span>
-                </div>
+                <div class="flex items-center gap-2 mb-2"><span class="text-[10px] font-mono font-bold text-red-400/80 tracking-widest">{{ t(`enterprise.inc_${i}_date`) }}</span><span class="text-[9px] font-mono text-red-400/50 px-1.5 py-0.5 border border-red-500/20 bg-red-500/5">{{ t(`enterprise.inc_${i}_cause`) }}</span></div>
                 <h4 class="text-sm font-mono font-bold text-white/85 mb-1.5">{{ t(`enterprise.inc_${i}_name`) }}</h4>
                 <p class="text-xs text-white/35 leading-relaxed mb-2">{{ t(`enterprise.inc_${i}_detail`) }}</p>
                 <div class="flex gap-3 pt-2 border-t border-white/5">
-                  <div class="flex items-center gap-1.5">
-                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_duration`) }}</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_impact`) }}</span>
-                  </div>
+                  <div class="flex items-center gap-1.5"><svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_duration`) }}</span></div>
+                  <div class="flex items-center gap-1.5"><svg class="w-3 h-3 text-red-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="text-[10px] font-mono text-red-400/60">{{ t(`enterprise.inc_${i}_impact`) }}</span></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <!-- How our DDI prevents this -->
       <div class="reveal-scale hud-panel p-8 border-green-500/20">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse"></span>
-          <h4 class="text-sm font-mono font-semibold text-green-400/80 uppercase tracking-wider">{{ t('enterprise.inc_prevent_title') }}</h4>
-        </div>
-        <ul class="space-y-3">
-          <li
-            v-for="(point, idx) in tm('enterprise.inc_prevent_points')"
-            :key="idx"
-            class="reveal flex items-start gap-3"
-            :class="`stagger-${idx + 1}`"
-          >
-            <span class="text-green-500/60 font-mono shrink-0 mt-px text-xs">[+]</span>
-            <span class="text-sm text-white/45 leading-relaxed">{{ point }}</span>
-          </li>
-        </ul>
+        <div class="flex items-center gap-2 mb-5"><span class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse"></span><h4 class="text-sm font-mono font-semibold text-green-400/80 uppercase tracking-wider">{{ t('enterprise.inc_prevent_title') }}</h4></div>
+        <ul class="space-y-3"><li v-for="(point, idx) in tm('enterprise.inc_prevent_points')" :key="idx" class="reveal flex items-start gap-3" :class="`stagger-${idx + 1}`"><span class="text-green-500/60 font-mono shrink-0 mt-px text-xs">[+]</span><span class="text-sm text-white/45 leading-relaxed">{{ point }}</span></li></ul>
       </div>
     </div>
   </section>
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 3. Services -->
+  <!-- 4. Services — our solution -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -293,19 +177,11 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.services_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.services_desc') }}</p>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div
-          v-for="(s, si) in services"
-          :key="s.key"
-          :class="['reveal-scale', `stagger-${si + 1}`]"
-          class="hud-panel p-6 group shimmer-hover relative overflow-hidden"
-        >
+        <div v-for="(s, si) in services" :key="s.key" :class="['reveal-scale', `stagger-${si + 1}`]" class="hud-panel p-6 group shimmer-hover relative overflow-hidden">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 border border-cyan/30 bg-cyan/5 flex items-center justify-center shrink-0 group-hover:border-cyan/60 group-hover:shadow-[0_0_12px_rgba(0,240,255,0.2)] transition-all">
-              <svg class="w-5 h-5 text-cyan group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" :d="s.icon" />
-              </svg>
+              <svg class="w-5 h-5 text-cyan group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" :d="s.icon" /></svg>
             </div>
             <div class="flex-1 min-w-0">
               <h3 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide mb-2">{{ t(`enterprise.svc_${s.key}`) }}</h3>
@@ -319,7 +195,7 @@ const costMetrics = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 3. How it works -->
+  <!-- 5. How it works — delivery model -->
   <section class="py-20 relative overflow-hidden">
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -327,32 +203,14 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.how_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.how_desc') }}</p>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <div class="reveal-left stagger-1 hud-panel hud-corners p-6">
-          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
-            <span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_4px_rgba(232,97,26,0.5)] animate-pulse-glow"></span>
-            <span class="text-[10px] font-mono text-primary/70 uppercase tracking-wider">{{ t('enterprise.we_provide_title') }}</span>
-          </div>
-          <ul class="space-y-2.5">
-            <li v-for="(item, i) in tm('enterprise.we_provide')" :key="i" class="flex gap-3 text-xs">
-              <span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span>
-              <span class="text-white/40">{{ item }}</span>
-            </li>
-          </ul>
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30"><span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_4px_rgba(232,97,26,0.5)] animate-pulse-glow"></span><span class="text-[10px] font-mono text-primary/70 uppercase tracking-wider">{{ t('enterprise.we_provide_title') }}</span></div>
+          <ul class="space-y-2.5"><li v-for="(item, i) in tm('enterprise.we_provide')" :key="i" class="flex gap-3 text-xs"><span class="text-primary/60 font-mono shrink-0 mt-px">[+]</span><span class="text-white/40">{{ item }}</span></li></ul>
         </div>
-
         <div class="reveal-right stagger-2 hud-panel hud-corners p-6">
-          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
-            <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.5)] animate-pulse-glow"></span>
-            <span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('enterprise.you_get_title') }}</span>
-          </div>
-          <ul class="space-y-2.5">
-            <li v-for="(item, i) in tm('enterprise.you_get')" :key="i" class="flex gap-3 text-xs">
-              <span class="text-green-500/60 font-mono shrink-0 mt-px">[+]</span>
-              <span class="text-white/40">{{ item }}</span>
-            </li>
-          </ul>
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30"><span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_rgba(34,197,94,0.5)] animate-pulse-glow"></span><span class="text-[10px] font-mono text-green-400/70 uppercase tracking-wider">{{ t('enterprise.you_get_title') }}</span></div>
+          <ul class="space-y-2.5"><li v-for="(item, i) in tm('enterprise.you_get')" :key="i" class="flex gap-3 text-xs"><span class="text-green-500/60 font-mono shrink-0 mt-px">[+]</span><span class="text-white/40">{{ item }}</span></li></ul>
         </div>
       </div>
     </div>
@@ -360,7 +218,30 @@ const costMetrics = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 4. Interactive Failover Diagram -->
+  <!-- 6. Key Advantages — why we're better (text) -->
+  <section class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('enterprise.adv_section') }}</h2>
+        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.adv_title') }}</h3>
+        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.adv_desc') }}</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div v-for="(a, ai) in advantages" :key="a.key" :class="['reveal-scale', `stagger-${ai + 1}`]" class="hud-panel hud-corners p-6 group">
+          <div class="flex items-center gap-3 mb-4 pb-3 border-b border-border-glow/30">
+            <div class="w-9 h-9 border border-primary/30 bg-primary/5 flex items-center justify-center shrink-0 group-hover:border-primary/60 group-hover:shadow-[0_0_12px_rgba(232,97,26,0.2)] transition-all"><svg class="w-4.5 h-4.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" :d="a.icon" /></svg></div>
+            <h3 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide">{{ t(`enterprise.adv_${a.key}`) }}</h3>
+          </div>
+          <p class="text-xs text-white/35 leading-relaxed mb-4">{{ t(`enterprise.adv_${a.key}_desc`) }}</p>
+          <ul class="space-y-2"><li v-for="(point, pi) in tm(`enterprise.adv_${a.key}_points`)" :key="pi" class="flex gap-2.5 text-xs"><span class="text-cyan/50 font-mono shrink-0 mt-px">&gt;</span><span class="text-white/40">{{ point }}</span></li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
+
+  <!-- 7. Failover Diagram — visual proof of resilience -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -368,15 +249,13 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.dia_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.dia_desc') }}</p>
       </div>
-      <div class="reveal-scale stagger-3">
-        <EnterpriseFailoverDiagram />
-      </div>
+      <div class="reveal-scale stagger-3"><EnterpriseFailoverDiagram /></div>
     </div>
   </section>
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 5. Multi-Site DDI & Roaming -->
+  <!-- 8. Multi-Site DDI & Roaming — visual proof of flexibility -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -384,31 +263,18 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.msite_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.msite_desc') }}</p>
       </div>
-      <div class="reveal-scale stagger-3 mb-10">
-        <MultiSiteDDIDiagram />
-      </div>
-
-      <!-- Feature cards below diagram -->
+      <div class="reveal-scale stagger-3 mb-10"><MultiSiteDDIDiagram /></div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="reveal-scale stagger-4 hud-panel p-5 group">
-          <div class="flex items-center gap-2 mb-3">
-            <svg class="w-4 h-4 text-green-400/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
-            <h4 class="text-xs font-mono font-semibold text-white/70 uppercase tracking-wide">{{ t('enterprise.msite_feat_roam') }}</h4>
-          </div>
+          <div class="flex items-center gap-2 mb-3"><svg class="w-4 h-4 text-green-400/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg><h4 class="text-xs font-mono font-semibold text-white/70 uppercase tracking-wide">{{ t('enterprise.msite_feat_roam') }}</h4></div>
           <p class="text-xs text-white/30 leading-relaxed">{{ t('enterprise.msite_feat_roam_desc') }}</p>
         </div>
         <div class="reveal-scale stagger-5 hud-panel p-5 group">
-          <div class="flex items-center gap-2 mb-3">
-            <svg class="w-4 h-4 text-cyan/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-            <h4 class="text-xs font-mono font-semibold text-white/70 uppercase tracking-wide">{{ t('enterprise.msite_feat_identity') }}</h4>
-          </div>
+          <div class="flex items-center gap-2 mb-3"><svg class="w-4 h-4 text-cyan/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg><h4 class="text-xs font-mono font-semibold text-white/70 uppercase tracking-wide">{{ t('enterprise.msite_feat_identity') }}</h4></div>
           <p class="text-xs text-white/30 leading-relaxed">{{ t('enterprise.msite_feat_identity_desc') }}</p>
         </div>
         <div class="reveal-scale stagger-6 hud-panel p-5 group">
-          <div class="flex items-center gap-2 mb-3">
-            <svg class="w-4 h-4 text-primary/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <h4 class="text-xs font-mono font-semibold text-white/70 uppercase tracking-wide">{{ t('enterprise.msite_feat_offsite') }}</h4>
-          </div>
+          <div class="flex items-center gap-2 mb-3"><svg class="w-4 h-4 text-primary/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><h4 class="text-xs font-mono font-semibold text-white/70 uppercase tracking-wide">{{ t('enterprise.msite_feat_offsite') }}</h4></div>
           <p class="text-xs text-white/30 leading-relaxed">{{ t('enterprise.msite_feat_offsite_desc') }}</p>
         </div>
       </div>
@@ -417,45 +283,7 @@ const costMetrics = [
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 6. Key Advantages -->
-  <section class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="reveal text-[10px] font-mono uppercase tracking-[0.3em] text-cyan/40 mb-4">{{ t('enterprise.adv_section') }}</h2>
-        <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.adv_title') }}</h3>
-        <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.adv_desc') }}</p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div
-          v-for="(a, ai) in advantages"
-          :key="a.key"
-          :class="['reveal-scale', `stagger-${ai + 1}`]"
-          class="hud-panel hud-corners p-6 group"
-        >
-          <div class="flex items-center gap-3 mb-4 pb-3 border-b border-border-glow/30">
-            <div class="w-9 h-9 border border-primary/30 bg-primary/5 flex items-center justify-center shrink-0 group-hover:border-primary/60 group-hover:shadow-[0_0_12px_rgba(232,97,26,0.2)] transition-all">
-              <svg class="w-4.5 h-4.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" :d="a.icon" />
-              </svg>
-            </div>
-            <h3 class="text-sm font-mono font-semibold text-white/80 uppercase tracking-wide">{{ t(`enterprise.adv_${a.key}`) }}</h3>
-          </div>
-          <p class="text-xs text-white/35 leading-relaxed mb-4">{{ t(`enterprise.adv_${a.key}_desc`) }}</p>
-          <ul class="space-y-2">
-            <li v-for="(point, pi) in tm(`enterprise.adv_${a.key}_points`)" :key="pi" class="flex gap-2.5 text-xs">
-              <span class="text-cyan/50 font-mono shrink-0 mt-px">&gt;</span>
-              <span class="text-white/40">{{ point }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
-
-  <!-- 6. Cost Savings -->
+  <!-- 9. Cost Savings — ROI -->
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -463,57 +291,29 @@ const costMetrics = [
         <h3 class="reveal stagger-1 text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.cost_title') }}</h3>
         <p class="reveal stagger-2 mt-4 text-white/35 max-w-3xl mx-auto">{{ t('enterprise.cost_desc') }}</p>
       </div>
-
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-        <div
-          v-for="(m, mi) in costMetrics"
-          :key="m.key"
-          :class="['reveal-scale', `stagger-${mi + 1}`]"
-          class="hud-panel p-6 text-center group hover:border-primary/40 transition-all"
-        >
-          <div class="text-3xl sm:text-4xl font-mono font-bold text-primary mb-1">
-            {{ m.value }}<span class="text-lg text-primary/60">{{ m.unit }}</span>
-          </div>
+        <div v-for="(m, mi) in costMetrics" :key="m.key" :class="['reveal-scale', `stagger-${mi + 1}`]" class="hud-panel p-6 text-center group hover:border-primary/40 transition-all">
+          <div class="text-3xl sm:text-4xl font-mono font-bold text-primary mb-1">{{ m.value }}<span class="text-lg text-primary/60">{{ m.unit }}</span></div>
           <div class="text-[10px] font-mono text-white/40 uppercase tracking-wider">{{ t(`enterprise.cost_${m.key}`) }}</div>
         </div>
       </div>
-
       <div class="reveal-scale max-w-4xl mx-auto hud-panel hud-corners p-6">
-        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30">
-          <span class="text-[10px] font-mono text-cyan/40 uppercase tracking-wider">{{ t('enterprise.cost_how') }}</span>
-        </div>
-        <ul class="space-y-2.5">
-          <li
-            v-for="(point, i) in tm('enterprise.cost_points')"
-            :key="i"
-            class="reveal flex gap-3 text-sm"
-            :class="`stagger-${i + 1}`"
-          >
-            <span class="text-primary/60 font-mono shrink-0">[+]</span>
-            <span class="text-white/45">{{ point }}</span>
-          </li>
-        </ul>
+        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-border-glow/30"><span class="text-[10px] font-mono text-cyan/40 uppercase tracking-wider">{{ t('enterprise.cost_how') }}</span></div>
+        <ul class="space-y-2.5"><li v-for="(point, i) in tm('enterprise.cost_points')" :key="i" class="reveal flex gap-3 text-sm" :class="`stagger-${i + 1}`"><span class="text-primary/60 font-mono shrink-0">[+]</span><span class="text-white/45">{{ point }}</span></li></ul>
       </div>
     </div>
   </section>
 
   <div class="h-px bg-gradient-to-r from-transparent via-border-glow to-transparent"></div>
 
-  <!-- 7. CTA -->
+  <!-- 10. CTA — close -->
   <section class="py-20 relative overflow-hidden">
-    <div class="absolute inset-0">
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px] animate-pulse-glow"></div>
-    </div>
+    <div class="absolute inset-0"><div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px] animate-pulse-glow"></div></div>
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="reveal text-3xl sm:text-4xl font-bold text-white">{{ t('enterprise.cta_title') }}</h2>
       <p class="reveal stagger-1 mt-4 text-white/35 text-lg">{{ t('enterprise.cta_desc') }}</p>
-      <a
-        href="mailto:1.1.8.8@yamu.com"
-        class="reveal stagger-2 inline-flex items-center gap-3 mt-8 px-8 py-4 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 hover:shadow-[0_0_30px_rgba(232,97,26,0.2)] font-mono text-sm uppercase tracking-wider transition-all glow-orange shimmer-hover relative overflow-hidden"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
+      <a href="mailto:1.1.8.8@yamu.com" class="reveal stagger-2 inline-flex items-center gap-3 mt-8 px-8 py-4 bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 hover:shadow-[0_0_30px_rgba(232,97,26,0.2)] font-mono text-sm uppercase tracking-wider transition-all glow-orange shimmer-hover relative overflow-hidden">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
         {{ t('enterprise.cta_email') }} — 1.1.8.8@yamu.com
       </a>
     </div>
