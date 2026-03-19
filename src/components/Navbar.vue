@@ -36,6 +36,7 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 const navItems = [
   { to: '/', label: 'nav.home' },
   { to: '/clients', label: 'nav.clients' },
+  { to: '/enterprise', label: 'nav.enterprise' },
   { to: '/isps', label: 'nav.isps' },
 ]
 </script>

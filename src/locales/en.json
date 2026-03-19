@@ -3,6 +3,7 @@
     "home": "Home",
     "clients": "For Clients",
     "isps": "For ISPs",
+    "enterprise": "For Enterprise",
     "contact": "Contact",
     "public_dns": "Public DNS"
   },
@@ -360,6 +361,79 @@
     "tier_label_1": "TIER_01",
     "tier_label_2": "TIER_02",
     "tier_label_3": "TIER_03"
+  },
+  "enterprise": {
+    "section": "// ENTERPRISE DNS SOLUTIONS",
+    "hero_title": "DNS Infrastructure for Your Business",
+    "hero_subtitle": "DDI Services — DNS, DHCP & IP Address Management",
+    "hero_desc": "We deliver turnkey DNS infrastructure with hardware, software, and 24/7 managed support. From internal DNS and DHCP to hybrid cloud failover — everything your organization needs, deployed on your network.",
+    "contact_us": "Contact Us",
+    "services_section": "// WHAT WE OFFER",
+    "services_title": "Complete DDI & DNS Solutions",
+    "services_desc": "A full suite of DNS infrastructure services designed for enterprises that demand reliability, control, and expert support.",
+    "svc_dns_public": "1.1.8.8 Public DNS",
+    "svc_dns_public_desc": "Enterprise-grade access to the 1.1.8.8 public DNS network. Fast, secure resolution with DoT, DoH, DoQ support and DNSSEC validation. Ideal as a backup resolver or primary for remote workers.",
+    "svc_ddi": "DDI Service",
+    "svc_ddi_desc": "Integrated DNS, DHCP, and IP Address Management in a single platform. Automate IP allocation, enforce naming policies, and maintain a real-time view of every device on your network.",
+    "svc_dhcp": "DHCP & IP Management",
+    "svc_dhcp_desc": "Centralized DHCP management with intelligent IP allocation, lease tracking, and conflict detection. Supports scopes, reservations, and dynamic DNS updates across all sites.",
+    "svc_dns_mgmt": "DNS Management",
+    "svc_dns_mgmt_desc": "Full internal and external DNS management. Authoritative DNS for your domains, split-horizon for internal resolution, and policy-based forwarding — all from a unified console.",
+    "svc_managed": "Managed DDI Service",
+    "svc_managed_desc": "Let us handle everything. Subscription-based fully managed DDI — we monitor, maintain, update, and optimize your entire DNS and DHCP infrastructure around the clock.",
+    "svc_support": "24/7 Expert Support",
+    "svc_support_desc": "Round-the-clock technical support from DNS infrastructure engineers. Incident response, configuration assistance, and proactive monitoring — included with every deployment.",
+    "how_section": "// HOW IT WORKS",
+    "how_title": "We Bring Everything to You",
+    "how_desc": "No need to source hardware, build software, or hire DNS specialists. We provide the complete stack, installed on your network and managed by our team.",
+    "we_provide_title": "What We Provide",
+    "we_provide": [
+      "Purpose-built hardware appliances, deployed on-site in your data center",
+      "HyperDNS software suite — the same engine powering 1.1.8.8 globally",
+      "Full DDI platform: DNS + DHCP + IP Address Management",
+      "Unified management portal for all sites, zones, and configurations",
+      "24/7 monitoring, alerting, software updates, and security patches",
+      "Dedicated support team with SLA-backed response times"
+    ],
+    "you_get_title": "What You Get",
+    "you_get": [
+      "Enterprise DNS that runs locally on your network — no cloud dependency",
+      "Complete DHCP and IP address management with real-time visibility",
+      "DNS failover protection via our Hybrid Cloud 1.1.8.8 network",
+      "Multi-site management from a single dashboard",
+      "Zero DNS expertise required from your team — we handle everything",
+      "Predictable subscription pricing — no surprise hardware costs"
+    ],
+    "adv_section": "// KEY ADVANTAGES",
+    "adv_title": "Built for Enterprise Resilience",
+    "adv_desc": "Enterprise DNS can't afford downtime. Our architecture ensures your DNS infrastructure stays online no matter what.",
+    "adv_failover": "Hybrid Cloud Failover",
+    "adv_failover_desc": "Your local DNS configuration is continuously synced to our 1.1.8.8 Hybrid Cloud. If your on-premises appliance goes down, the cloud seamlessly serves the same configuration — same zones, same records, zero disruption.",
+    "adv_failover_points": [
+      "Local config automatically synced to cloud in real-time",
+      "Cloud serves identical DNS responses during local failure",
+      "Automatic failback when local appliance recovers",
+      "No manual intervention — fully automated"
+    ],
+    "adv_hotspare": "Dual Hot-Spare Protection",
+    "adv_hotspare_desc": "Every deployment includes dual appliances running in active-active or active-passive configuration. Hardware failure in one unit triggers instant, sub-second failover to the standby — your users never notice.",
+    "adv_hotspare_points": [
+      "Two appliances per site — always ready",
+      "Sub-second failover on hardware or software failure",
+      "Automatic state synchronization between units",
+      "Combined with cloud failover: three layers of protection"
+    ],
+    "adv_remote": "Remote Office Management",
+    "adv_remote_desc": "Manage DNS and DHCP across all your offices from a single unified portal. Deploy new sites in minutes, push configuration changes globally, and maintain full visibility into every location.",
+    "adv_remote_points": [
+      "Unified dashboard for all sites — HQ, branches, remote offices",
+      "Easy deployment: ship appliance, plug in, auto-configures",
+      "Site-to-site configuration sync and policy inheritance",
+      "Centralized reporting and audit logging across all locations"
+    ],
+    "cta_title": "Ready to Secure Your DNS?",
+    "cta_desc": "Talk to our team about deploying enterprise-grade DDI infrastructure on your network. Custom solutions for organizations of any size.",
+    "cta_email": "Email Us"
   },
   "footer": {
     "powered": "Powered by",

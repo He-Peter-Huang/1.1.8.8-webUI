@@ -2,10 +2,12 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import ForClients from '../views/ForClients.vue'
 import ForISPs from '../views/ForISPs.vue'
+import ForEnterprise from '../views/ForEnterprise.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/clients', name: 'ForClients', component: ForClients },
+  { path: '/enterprise', name: 'ForEnterprise', component: ForEnterprise },
   { path: '/isps', name: 'ForISPs', component: ForISPs },
 ]
 

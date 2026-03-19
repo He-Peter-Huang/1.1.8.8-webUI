@@ -3,6 +3,7 @@
     "home": "Accueil",
     "clients": "Utilisateurs",
     "isps": "FAI",
+    "enterprise": "Entreprises",
     "contact": "Contact",
     "public_dns": "DNS Public"
   },
@@ -360,6 +361,79 @@
     "tier_label_1": "NIVEAU_01",
     "tier_label_2": "NIVEAU_02",
     "tier_label_3": "NIVEAU_03"
+  },
+  "enterprise": {
+    "section": "// SOLUTIONS DNS ENTREPRISE",
+    "hero_title": "Infrastructure DNS pour votre entreprise",
+    "hero_subtitle": "Services DDI — DNS, DHCP & Gestion d'adresses IP",
+    "hero_desc": "Nous fournissons une infrastructure DNS clé en main avec matériel, logiciel et support géré 24/7. Du DNS interne et DHCP au basculement cloud hybride — tout ce dont votre organisation a besoin, déployé sur votre réseau.",
+    "contact_us": "Contactez-nous",
+    "services_section": "// NOS SERVICES",
+    "services_title": "Solutions DDI & DNS complètes",
+    "services_desc": "Une gamme complète de services d'infrastructure DNS conçue pour les entreprises exigeant fiabilité, contrôle et support expert.",
+    "svc_dns_public": "DNS Public 1.1.8.8",
+    "svc_dns_public_desc": "Accès entreprise au réseau DNS public 1.1.8.8. Résolution rapide et sécurisée avec support DoT, DoH, DoQ et validation DNSSEC. Idéal comme résolveur de secours ou principal pour les télétravailleurs.",
+    "svc_ddi": "Service DDI",
+    "svc_ddi_desc": "DNS, DHCP et gestion d'adresses IP intégrés sur une seule plateforme. Automatisez l'allocation IP, appliquez les politiques de nommage et maintenez une vue en temps réel de chaque appareil.",
+    "svc_dhcp": "DHCP & Gestion IP",
+    "svc_dhcp_desc": "Gestion DHCP centralisée avec allocation IP intelligente, suivi des baux et détection de conflits. Supporte les étendues, réservations et mises à jour DNS dynamiques.",
+    "svc_dns_mgmt": "Gestion DNS",
+    "svc_dns_mgmt_desc": "Gestion DNS interne et externe complète. DNS autoritaire, horizon partagé pour la résolution interne et transfert basé sur des politiques — le tout depuis une console unifiée.",
+    "svc_managed": "Service DDI Géré",
+    "svc_managed_desc": "Laissez-nous tout gérer. DDI entièrement géré sur abonnement — nous surveillons, maintenons, mettons à jour et optimisons votre infrastructure DNS et DHCP 24 heures sur 24.",
+    "svc_support": "Support Expert 24/7",
+    "svc_support_desc": "Support technique 24h/24 par des ingénieurs infrastructure DNS. Réponse aux incidents, assistance à la configuration et surveillance proactive — inclus avec chaque déploiement.",
+    "how_section": "// COMMENT ÇA MARCHE",
+    "how_title": "Nous apportons tout chez vous",
+    "how_desc": "Pas besoin de chercher du matériel, développer des logiciels ou recruter des spécialistes DNS. Nous fournissons la pile complète, installée sur votre réseau et gérée par notre équipe.",
+    "we_provide_title": "Ce que nous fournissons",
+    "we_provide": [
+      "Appliances matérielles dédiées, déployées sur site dans votre centre de données",
+      "Suite logicielle HyperDNS — le même moteur qui propulse 1.1.8.8 dans le monde",
+      "Plateforme DDI complète : DNS + DHCP + Gestion d'adresses IP",
+      "Portail de gestion unifié pour tous les sites, zones et configurations",
+      "Surveillance 24/7, alertes, mises à jour logicielles et correctifs de sécurité",
+      "Équipe de support dédiée avec temps de réponse garantis par SLA"
+    ],
+    "you_get_title": "Ce que vous obtenez",
+    "you_get": [
+      "Un DNS d'entreprise qui fonctionne localement sur votre réseau — sans dépendance cloud",
+      "Gestion complète DHCP et adresses IP avec visibilité en temps réel",
+      "Protection par basculement DNS via notre réseau Hybrid Cloud 1.1.8.8",
+      "Gestion multi-sites depuis un seul tableau de bord",
+      "Aucune expertise DNS requise de votre équipe — nous gérons tout",
+      "Tarification par abonnement prévisible — sans coûts matériels surprises"
+    ],
+    "adv_section": "// AVANTAGES CLÉS",
+    "adv_title": "Conçu pour la résilience d'entreprise",
+    "adv_desc": "Le DNS d'entreprise ne peut pas se permettre de temps d'arrêt. Notre architecture garantit que votre infrastructure DNS reste en ligne quoi qu'il arrive.",
+    "adv_failover": "Basculement Cloud Hybride",
+    "adv_failover_desc": "Votre configuration DNS locale est synchronisée en continu avec notre Cloud Hybride 1.1.8.8. Si votre appliance sur site tombe en panne, le cloud sert de manière transparente la même configuration — mêmes zones, mêmes enregistrements, zéro perturbation.",
+    "adv_failover_points": [
+      "Configuration locale synchronisée automatiquement vers le cloud en temps réel",
+      "Le cloud sert des réponses DNS identiques en cas de panne locale",
+      "Retour automatique quand l'appliance locale se rétablit",
+      "Aucune intervention manuelle — entièrement automatisé"
+    ],
+    "adv_hotspare": "Double protection hot-spare",
+    "adv_hotspare_desc": "Chaque déploiement comprend deux appliances en configuration actif-actif ou actif-passif. Une panne matérielle déclenche un basculement instantané en moins d'une seconde — vos utilisateurs ne remarquent rien.",
+    "adv_hotspare_points": [
+      "Deux appliances par site — toujours prêtes",
+      "Basculement en moins d'une seconde en cas de panne",
+      "Synchronisation automatique de l'état entre les unités",
+      "Combiné au basculement cloud : trois niveaux de protection"
+    ],
+    "adv_remote": "Gestion des bureaux distants",
+    "adv_remote_desc": "Gérez le DNS et le DHCP de tous vos bureaux depuis un portail unifié unique. Déployez de nouveaux sites en minutes, poussez les changements de configuration globalement et maintenez une visibilité complète.",
+    "adv_remote_points": [
+      "Tableau de bord unifié pour tous les sites — siège, succursales, bureaux distants",
+      "Déploiement facile : expédiez l'appliance, branchez, auto-configuration",
+      "Synchronisation de configuration site à site et héritage de politiques",
+      "Rapports centralisés et journaux d'audit sur tous les sites"
+    ],
+    "cta_title": "Prêt à sécuriser votre DNS ?",
+    "cta_desc": "Discutez avec notre équipe du déploiement d'une infrastructure DDI de niveau entreprise sur votre réseau. Solutions personnalisées pour toute taille d'organisation.",
+    "cta_email": "Nous écrire"
   },
   "footer": {
     "powered": "Propulsé par",
