@@ -424,9 +424,12 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <!-- Terminal event log -->
-      <div class="p-3 h-52 lg:h-auto flex">
-        <EventLog :entries="log" :title="t('enterprise.dia_log_title')" class="flex-1" />
+      <!-- Terminal event log: absolutely positioned on lg so its content
+           never drives the row height — the stage alone defines it -->
+      <div class="relative h-52 lg:h-auto">
+        <div class="p-3 flex h-full lg:h-auto lg:absolute lg:inset-0">
+          <EventLog :entries="log" :title="t('enterprise.dia_log_title')" class="flex-1 min-h-0" />
+        </div>
       </div>
     </div>
 

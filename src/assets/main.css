@@ -389,12 +389,34 @@ body {
 }
 .card-down { animation: card-flicker 0.35s steps(2, end) 3; }
 
+/* Marching dashes for a handshake-in-progress link */
+@keyframes dash-march { to { stroke-dashoffset: -14; } }
+.dash-march {
+  stroke-dasharray: 4 3;
+  animation: dash-march 0.5s linear infinite;
+}
+
+/* Docking: sonar ring emitted from the dock point + card scale pop */
+@keyframes dock-ping {
+  from { transform: translate(-50%, -50%) scale(0.35); opacity: 0.8; }
+  to { transform: translate(-50%, -50%) scale(1.7); opacity: 0; }
+}
+.dock-ping { animation: dock-ping 0.7s cubic-bezier(0, 0, 0.2, 1) both; }
+
+@keyframes dock-pop {
+  0% { scale: 1; }
+  40% { scale: 1.07; }
+  100% { scale: 1; }
+}
+.dock-pop { animation: dock-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
 @media (prefers-reduced-motion: reduce) {
-  .beam-comet, .pop-ping { display: none; }
+  .beam-comet, .pop-ping, .dock-ping { display: none; }
   .pop-warn-ring { animation: none; }
   .path-draw { animation: none; stroke-dasharray: none; }
   .log-line, .fade-rise { animation: none; }
-  .card-down { animation: none; }
+  .card-down, .dock-pop { animation: none; }
+  .dash-march { animation: none; }
 }
 
 /* ===== Fullscreen diagram mode ===== */

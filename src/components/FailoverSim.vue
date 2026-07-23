@@ -451,9 +451,12 @@ onBeforeUnmount(() => clearInterval(qpsTimer))
         </svg>
       </div>
 
-      <!-- Network operations feed -->
-      <div class="p-3 h-52 lg:h-auto flex">
-        <EventLog :entries="log" :title="t('isps.fo_log_title')" class="flex-1" />
+      <!-- Network operations feed: absolutely positioned on lg so its content
+           never drives the row height — the map alone defines it -->
+      <div class="relative h-52 lg:h-auto">
+        <div class="p-3 flex h-full lg:h-auto lg:absolute lg:inset-0">
+          <EventLog :entries="log" :title="t('isps.fo_log_title')" class="flex-1 min-h-0" />
+        </div>
       </div>
     </div>
 
