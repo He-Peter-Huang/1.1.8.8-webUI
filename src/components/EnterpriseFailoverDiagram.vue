@@ -2,6 +2,7 @@
 import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDiagramLoop } from '../composables/useDiagramLoop.js'
+import { useFullscreen } from '../composables/useFullscreen.js'
 import PhaseStepper from './diagram/PhaseStepper.vue'
 import EventLog from './diagram/EventLog.vue'
 
@@ -89,6 +90,7 @@ const stepperPhases = computed(() =>
 
 /* ── Stage geometry: HTML node cards measured into SVG beam anchors ── */
 const rootRef = ref(null)
+const { isFullscreen, toggle: toggleFullscreen } = useFullscreen(rootRef)
 const stageRef = ref(null)
 const cardEls = reactive({})
 const box = reactive({ w: 0, h: 0 })
@@ -272,7 +274,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="rootRef" class="hud-panel hud-corners relative overflow-hidden">
+  <div ref="rootRef" class="fs-root hud-panel hud-corners relative overflow-hidden">
     <!-- Header: current phase + the promise -->
     <div class="flex items-center justify-between gap-3 px-5 sm:px-7 py-3.5 border-b border-border-glow/30">
       <div class="flex items-center gap-2.5 min-w-0">
@@ -281,9 +283,27 @@ onBeforeUnmount(() => {
           {{ t(`enterprise.dia_phase_${phase}`) }}
         </span>
       </div>
-      <span class="hidden sm:inline shrink-0 text-[10px] font-mono text-green-400/70 border border-green-500/20 bg-green-500/5 px-2 py-1">
-        {{ t('enterprise.dia_zero_downtime') }}
-      </span>
+      <div class="flex items-center gap-2 shrink-0">
+        <span class="hidden sm:inline text-[10px] font-mono text-green-400/70 border border-green-500/20 bg-green-500/5 px-2 py-1">
+          {{ t('enterprise.dia_zero_downtime') }}
+        </span>
+        <button
+          class="w-7 h-7 border border-border-glow/50 bg-white/[0.02] text-white/40 hover:text-primary hover:border-primary/50 transition-all flex items-center justify-center cursor-pointer"
+          :aria-label="isFullscreen ? t('ui.exit_fullscreen') : t('ui.fullscreen')"
+          :title="isFullscreen ? t('ui.exit_fullscreen') : t('ui.fullscreen')"
+          @click="toggleFullscreen"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              :d="isFullscreen
+                ? 'M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25'
+                : 'M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15'"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Scenario stepper: auto-plays, click to scrub -->
@@ -292,10 +312,10 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- Stage + event log -->
-    <div class="grid lg:grid-cols-[1fr_300px]">
+    <div class="fs-grow grid lg:grid-cols-[1fr_300px]">
       <div
         ref="stageRef"
-        class="relative h-[320px] sm:h-[380px] dot-grid overflow-hidden border-b lg:border-b-0 lg:border-r border-border-glow/30"
+        class="fs-stage relative h-[320px] sm:h-[380px] dot-grid overflow-hidden border-b lg:border-b-0 lg:border-r border-border-glow/30"
       >
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.04),transparent_65%)]"></div>
 

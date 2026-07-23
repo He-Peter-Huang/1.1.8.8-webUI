@@ -621,6 +621,10 @@
     "rights": "Todos los derechos reservados.",
     "sys_online": "SYS.EN LÍNEA"
   },
+  "ui": {
+    "fullscreen": "Pantalla completa",
+    "exit_fullscreen": "Salir de pantalla completa"
+  },
   "nodes": {
     "los_angeles": "Los Ángeles",
     "new_jersey": "Nueva Jersey",

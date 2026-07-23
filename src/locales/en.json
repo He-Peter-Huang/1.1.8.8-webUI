@@ -621,6 +621,10 @@
     "rights": "All rights reserved.",
     "sys_online": "SYS.ONLINE"
   },
+  "ui": {
+    "fullscreen": "Fullscreen",
+    "exit_fullscreen": "Exit fullscreen"
+  },
   "nodes": {
     "los_angeles": "Los Angeles",
     "new_jersey": "New Jersey",
