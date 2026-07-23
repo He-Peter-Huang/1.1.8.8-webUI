@@ -310,3 +310,89 @@ body {
   animation: shimmer 0.8s ease-in-out;
   pointer-events: none;
 }
+
+/* ===== Failover diagram system ===== */
+/* Comet beam: paths carry pathLength="100"; a short dash travels the
+   normalized path from just before the start (offset 20) to just past the
+   end (-102). Gaps are sized so only one comet is ever on the path. */
+@keyframes comet-travel {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: -102; }
+}
+.beam-comet {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dashoffset: 20;
+  animation: comet-travel var(--dur, 2.4s) cubic-bezier(0.3, 0.75, 0.4, 1) var(--delay, 0s) infinite;
+}
+.beam-comet.echo { animation-delay: calc(var(--delay, 0s) - var(--dur, 2.4s) / 2); }
+.layer-core { stroke-width: 1.6; stroke-dasharray: 8 118; }
+.layer-mid  { stroke-width: 3;   stroke-dasharray: 13 113; opacity: 0.45; }
+.layer-glow { stroke-width: 6.5; stroke-dasharray: 18 108; opacity: 0.16; }
+
+/* Path draw-in when a failover route activates */
+@keyframes path-draw-in {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+.path-draw {
+  stroke-dasharray: 100 100;
+  animation: path-draw-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Expanding ping ring on active/absorbing map nodes */
+@keyframes pop-ping {
+  from { transform: scale(0.6); opacity: 0.8; }
+  to { transform: scale(2); opacity: 0; }
+}
+.pop-ping {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pop-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Rotating dashed ring for degraded nodes */
+@keyframes spin360 { to { transform: rotate(360deg); } }
+.pop-warn-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin360 3s linear infinite;
+}
+
+/* Capacity ring load transitions */
+.ring-anim {
+  transition: stroke-dasharray 0.9s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s ease;
+}
+
+/* Terminal log lines */
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.log-line { animation: log-in 0.3s ease-out both; }
+.log-caret {
+  display: inline-block;
+  width: 6px;
+  height: 10px;
+  margin-left: 2px;
+  vertical-align: -1px;
+  background: currentColor;
+  opacity: 0.7;
+  animation: blink 1s step-end infinite;
+}
+.fade-rise { animation: log-in 0.4s ease-out both; }
+
+/* One-shot flicker when a node card dies */
+@keyframes card-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.card-down { animation: card-flicker 0.35s steps(2, end) 3; }
+
+@media (prefers-reduced-motion: reduce) {
+  .beam-comet, .pop-ping { display: none; }
+  .pop-warn-ring { animation: none; }
+  .path-draw { animation: none; stroke-dasharray: none; }
+  .log-line, .fade-rise { animation: none; }
+  .card-down { animation: none; }
+}
