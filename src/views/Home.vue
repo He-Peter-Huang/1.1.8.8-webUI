@@ -39,7 +39,7 @@ async function copyDns(addr, key) {
 
 const marqueeItems = [
   'DoH', 'DoT', 'DoQ', 'DNSSEC', 'ANYCAST', 'RFC 8767',
-  '20M QPS', '<0.1MS', '6 POPS', 'ZERO LOGS', 'HYPERDNS',
+  '20M QPS', 'SUB-MS CACHE', '6 POPS', 'MINIMAL LOGS', 'HYPERDNS',
 ]
 
 const journeySteps = [1, 2, 3, 4]
@@ -325,7 +325,7 @@ const eqBars = [0.55, 0.85, 0.4, 1, 0.7, 0.9, 0.5]
 
             <!-- privacy badge -->
             <div v-if="f.key === 'privacy'" class="hidden lg:block shrink-0 px-4 py-2 border border-primary/30 font-mono text-primary text-sm uppercase tracking-[0.25em]">
-              ZERO LOGS
+              MINIMAL LOGS
             </div>
           </div>
 
