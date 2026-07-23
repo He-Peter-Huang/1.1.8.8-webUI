@@ -419,6 +419,87 @@ body {
   .dash-march { animation: none; }
 }
 
+/* ===== Home v2 (award rebuild) ===== */
+
+/* Hero title: per-character rise-in */
+@keyframes hero-char-in {
+  from { opacity: 0; transform: translateY(0.35em) scale(0.96); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  animation: hero-char-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Infinite marquee (two identical halves, shift by 50%) */
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-scroll 36s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Gradient display text */
+.text-gradient-orange {
+  background: linear-gradient(100deg, #F5934D 0%, #E8611A 55%, #C44F12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Film-grain overlay */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Scroll hint line */
+@keyframes scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.scroll-line {
+  animation: scroll-line 2.2s ease-in-out infinite;
+}
+
+/* Equalizer bars (performance tile) */
+@keyframes eq-bounce {
+  from { transform: scaleY(0.25); }
+  to { transform: scaleY(1); }
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq-bounce 1.1s ease-in-out infinite alternate;
+}
+
+/* Bento tile hover lift */
+.bento-tile {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.4s ease;
+}
+.bento-tile:hover {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-char { animation: none; opacity: 1; }
+  .marquee-track { animation: none; }
+  .eq-bar, .scroll-line { animation: none; }
+  .bento-tile:hover { transform: none; }
+}
+
 /* ===== Fullscreen diagram mode ===== */
 .fs-root:fullscreen {
   background: #050A18;
